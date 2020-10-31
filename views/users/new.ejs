@@ -1,0 +1,22 @@
+<div class="container form1">
+    <h3 class="center-align">Create Account</h3>
+    <div class="row">
+        <form class="col s12" action="/users" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="username" type="text" name="username" class="">
+                    <label for="username">UserName</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" name="password" class="">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <button class="btn block waves-effect waves-light center-align" type="submit" name="action" onclick="window.location='/users/new2';">Create Account
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/materialize.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>
+        docu
+    </title>
+</head>
+
+
+
+<body>
+    <%- include("./partials/nav.ejs") %>
+        <%- body %>
+            <script type="text/javascript" src="/js/materialize.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const options = {
+
+                        padding: 60,
+
+                    }
+                    var elems = document.querySelectorAll('.carousel');
+                    var instances = M.Carousel.init(elems, options);
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.autocomplete');
+                    const options = {
+
+                        data: {
+                            "Apple": null,
+                            "Microsoft": null,
+                            "Google": 'https://placehold.it/250x250'
+                        },
+
+                    }
+                    var instances = M.Autocomplete.init(elems, options);
+                });
+
+                document.querySelector("#inline1").addEventListener("click", function(e) {
+                    if (e.target.checked) {
+                        document.querySelector("#amount_inline1").style.display = "block"
+                        document.querySelector(".amount_inline1").style.display = "block"
+                    } else {
+                        document.querySelector("#amount_inline1").style.display = "none"
+                        document.querySelector(".amount_inline1").style.display = "none"
+                    }
+                });
+
+                document.querySelector("#inline2").addEventListener("click", function(e) {
+                    if (e.target.checked) {
+                        document.querySelector("#amount_inline2").style.display = "block"
+                        document.querySelector(".amount_inline2").style.display = "block"
+                    } else {
+                        document.querySelector("#amount_inline2").style.display = "none"
+                        document.querySelector(".amount_inline2").style.display = "none"
+                    }
+                });
+
+                document.querySelector("#inline3").addEventListener("click", function(e) {
+                    if (e.target.checked) {
+                        document.querySelector("#amount_inline3").style.display = "block"
+                        document.querySelector(".amount_inline3").style.display = "block"
+                    } else {
+                        document.querySelector("#amount_inline3").style.display = "none"
+                        document.querySelector(".amount_inline3").style.display = "none"
+                    }
+                });
+
+                document.querySelector("#inline4").addEventListener("click", function(e) {
+                    if (e.target.checked) {
+                        document.querySelector("#amount_inline4").style.display = "block"
+                        document.querySelector(".amount_inline4").style.display = "block"
+                    } else {
+                        document.querySelector("#amount_inline4").style.display = "none"
+                        document.querySelector(".amount_inline4").style.display = "none"
+                    }
+                });
+            </script>
+</body>
+
+</html>

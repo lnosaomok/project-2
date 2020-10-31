@@ -1,0 +1,33 @@
+<nav>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left ">
+            <li>
+                <a href="#">
+                    Home
+                </a>
+
+                <li>
+                    <a href="#">
+                    link
+                </a>
+                </li>
+            </li>
+        </ul>
+        <ul class="right">
+
+            <% if (currentUser) { %>
+                <li>Welcome
+                    <%= currentUser.username %>
+                </li>
+                <li>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Log Out" class="btn-small red" />
+                    </form>
+                </li>
+                <% } else { %>
+                    <li><a href="/users/new">Sign Up</a></li>
+                    <li><a href="/sessions/new">Log In</a></li>
+                    <% } %>
+        </ul>
+    </div>
+</nav>

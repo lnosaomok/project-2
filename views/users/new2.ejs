@@ -1,0 +1,105 @@
+<div class="container form1">
+    <h3 class="center-align">Set User Preferences</h3>
+
+    <form class="col s12" action="/users/userPreferences" method="POST">
+        <div class="row">
+            <div class="col s12">
+                Set your daily calorie limit:
+                <div class="input-field inline">
+                    <input id="calories" type="text" name="calories" class="">
+                    <label for="calories">Daily Calorie Goal</label>
+                </div>
+            </div>
+        </div>
+        <p class="left-align">Select your diety preferences</p>
+        <div class="row">
+
+            <div class="diet">
+                <p id="first">
+                    <label>
+                        <input type="checkbox" id="inline1" value="CHOCDF" />
+                        <span>Red</span>
+                        <input id="amount_inline1" type="text" name="amounts">
+                        <label class="amount_inline1" for="amount_inline">Daily Target</label>
+                    </label>
+
+                </p>
+
+                <p>
+                    <label>
+                        <input type="checkbox" id="inline2" value="FAT" />
+                        <span>Red</span>
+                        <input id="amount_inline2" type="text" name="amounts">
+                        <label class="amount_inline2" for="amount_inline">Daily Target</label>
+                    </label>
+
+                </p>
+
+                <p>
+                    <label>
+                        <input type="checkbox" id="inline3" value="PROCNT" />
+                        <span>Red</span>
+                        <input id="amount_inline3" type="text" name="amounts">
+                        <label class="amount_inline3" for="amount_inline">Daily Target</label>
+                    </label>
+
+                </p>
+
+                <p>
+                    <label>
+                        <input type="checkbox" id="inline4" value="SUGAR" />
+                        <span>Red</span>
+                        <input id="amount_inline4" type="text" name="amounts">
+                        <label class="amount_inline4" for="amount_inline">Daily Target</label>
+                    </label>
+
+                </p>
+            </div>
+        </div>
+
+
+        <p class="left-align">Select your diety preferences</p>
+        <div class="row">
+
+            <div class="">
+
+                <p>
+                    <label>
+                        <input type="radio" name="diet_label" value="vegan" />
+                        <span>Red</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" name="diet_label" value="keto-friendly" />
+                        <span>Red</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" name="diet_label" value="paleo" />
+                        <span>Red</span>
+
+                    </label>
+
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" name="diet_label" value="gluten-free" />
+                        <span>Red</span>
+
+                    </label>
+
+                </p>
+            </div>
+        </div>
+        <button class="btn block waves-effect waves-light center-align" type="submit" name="action" onclick="window.location='/users/new2';">Create Account
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+
+</div>

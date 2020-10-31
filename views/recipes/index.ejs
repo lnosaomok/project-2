@@ -1,0 +1,77 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col s11">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <input type="text" id="autocomplete-input" class="autocomplete">
+
+                    <label for="autocomplete-input">type main ingredient to get recipe ideas</label>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col s1">
+            <button> <i class="material-icons right">send</i></button>
+
+        </div>
+    </div>
+    <div class="recipes">
+        <% recipes.forEach((element, index) => { %>
+
+
+
+            <div class="card sticky-action">
+                <form id="form">
+                    <p>
+                        <label>
+                        <input type="checkbox" />
+                        <span class="sr-only">Red</span>
+                    </label>
+                    </p>
+                </form>
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="<%= element.recipe.image %>">
+                </div>
+                <div class="card-content">
+                    <a class="btn-floating waves-effect waves-light red right"> <i class="material-icons">add</i></a>
+                    <span class="card-title activator grey-text text-darken-4"><%= element.recipe.label %></span>
+                    <p>
+                        <a href="#">
+                            <%= element.recipe.source %>
+                        </a>
+                    </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                    <h4>Ingredients</h4>
+                    <ol>
+                        <% element.recipe.ingredientLines.forEach((one, index) => { %>
+
+                            <li>
+                                <%= one %>
+                            </li>
+                            <% }) %>
+                    </ol>
+                    <a href="<%= element.recipe.source %>">Cooking Instructions from <%= element.recipe.source %></a>
+                </div>
+
+            </div>
+
+            <% }) %>
+    </div>
+    <ul class="pagination">
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+
+        <li class="active"><a href="/recipies">1</a></li>
+        <li class="waves-effect"><a href="/recipies/page2">2</a></li>
+        <li class="waves-effect"><a href="/recipies/page3">3</a></li>
+
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
