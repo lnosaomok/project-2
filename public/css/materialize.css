@@ -8,25 +8,32 @@
     background-color: #e51c23 !important;
 }
 
-#form span {
+#favourites-form span {
     color: white;
 }
 
-#form input[type="checkbox"]+span:not(.lever):before {
+#favourites-form input[type="checkbox"]+span:not(.lever):before {
     color: white;
     border: 2px solid white;
 }
 
-#form input[type="checkbox"]:checked+span:not(.lever):before {
+#favourites-form input[type="checkbox"]:checked+span:not(.lever):before {
     color: white;
     border: 2px solid white;
+}
+
+#hidden-submit {
+    background-color: white;
+    color: white;
+    border: none;
 }
 
 .recipes {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around;
 }
 
 .diet {

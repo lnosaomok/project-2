@@ -2,12 +2,15 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const { check, validationResult } = require("express-validator");
 
 const User = require("../models/users.js");
-router.get("/", async(req, res) => {
-    let url =
-        "https://api.edamam.com/search?q=fish&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=0&to=10";
+router.get("/search", async(req, res) => {
+    req.session.search = req.session.search ?
+        req.session.search :
+        req.query.search;
+    let query = req.query.search ? req.query.search : req.session.search;
+
+    let url = `https://api.edamam.com/search?q=${query}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=0&to=10`;
 
     let user = await User.findById("5f9c55d23fd4a051f711dfc8");
     user.macros.forEach((each) => {
@@ -29,14 +32,10 @@ router.get("/", async(req, res) => {
         .catch(function(error) {
             console.log(error);
         });
-
-    console.log(url);
-    //const recipies = await
 });
 
 router.get("/page2", async(req, res) => {
-    let url =
-        "https://api.edamam.com/search?q=fish&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=11&to=20";
+    let url = `https://api.edamam.com/search?q=${req.session.search}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=11&to=20`;
 
     let user = await User.findById("5f9c55d23fd4a051f711dfc8");
     user.macros.forEach((each) => {
@@ -63,8 +62,7 @@ router.get("/page2", async(req, res) => {
 });
 
 router.get("/page3", async(req, res) => {
-    let url =
-        "https://api.edamam.com/search?q=fish&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=21&to=30";
+    let url = `https://api.edamam.com/search?q=${req.session.search}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=21&to=30`;
 
     let user = await User.findById("5f9c55d23fd4a051f711dfc8");
     user.macros.forEach((each) => {
@@ -88,6 +86,15 @@ router.get("/page3", async(req, res) => {
 
     console.log(url);
     //const recipies = await
+});
+
+router.get("/", async(req, res) => {
+    res.render("recipes/index.ejs", {
+        recipes: [],
+        currentUser: req.session.currentUser,
+
+        //const recipies = await
+    });
 });
 /// Create User
 // router.post(
