@@ -1,12 +1,11 @@
 <div class="container">
-
     <div class="row">
         <form id="search-form" action="/recipies/search" method="GET">
             <div class="col s11">
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">local_dining</i>
-                        <input type="text" id="autocomplete-input" name="search" class="autocomplete">
+                        <input type="text" id="autocomplete-input" name="search" class="autocomplete" autocomplete="off">
 
                         <label for="autocomplete-input">type main ingredient to get recipe ideas</label>
 
@@ -29,6 +28,7 @@
 
 
             <div class="card sticky-action">
+              
                 <form id="favourites-form" action="/favourites" method="POST">
                     <p>
                         <label>
@@ -63,6 +63,7 @@
                             <% }) %>
                     </ol>
                     <a href="<%= element.recipe.source %>">Cooking Instructions from <%= element.recipe.source %></a>
+                    <div id="chart"></div>
                 </div>
 
             </div>

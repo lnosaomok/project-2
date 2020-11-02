@@ -5,10 +5,10 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../models/users.js");
 router.get("/new", (req, res) => {
-    res.render("users/new.ejs", { currentUser: req.session.currentUser });
+    res.render("users/new.ejs", { currentUser: req.session.currentUser ,  val: null});
 });
 router.get("/new2", (req, res) => {
-    res.render("users/new2.ejs", { currentUser: req.session.currentUser });
+    res.render("users/new2.ejs", { currentUser: req.session.currentUser ,  val: null});
 });
 
 /// Create User
@@ -34,13 +34,13 @@ router.post(
             }
 
             req.body.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-            await User.create(req.body, (err, createdUser) => {
-                console.log("user is created", createdUser);
-                // req.session.currentUser = "createdUser";
-            });
+            let createdUser = await User.create({ username, password });
+
+            req.session.currentUser = createdUser;
 
             // await console.log(req.session.currentUser);
-            res.redirect("/sessions/new");
+            console.log(req.session.currentUser);
+            res.redirect("/users/new2");
         } catch (err) {
             console.error(err);
             res.status(500).send("Server Error");

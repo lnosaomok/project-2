@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/billboard/billboard.css">
     <link rel="stylesheet" href="/css/materialize.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,29 +20,14 @@
     <%- include("./partials/nav.ejs") %>
         <%- body %>
             <script type="text/javascript" src="/js/materialize.js"></script>
+            <script type="text/javascript" src="/billboard/billboard.js"></script>
+            <script type="text/javascript" src="/billboard/billboard.pkgd.js"></script>
+
+
+            <script type="text/javascript" src="/js/autocomplete.js"></script>
+
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const options = {
-
-                        padding: 60,
-
-                    }
-                    var elems = document.querySelectorAll('.carousel');
-                    var instances = M.Carousel.init(elems, options);
-                });
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.autocomplete');
-                    const options = {
-
-                        data: {
-                            "Apple": null,
-                            "Microsoft": null,
-                            "Google": 'https://placehold.it/250x250'
-                        },
-
-                    }
-                    var instances = M.Autocomplete.init(elems, options);
-                });
+               
                 let inline1El = document.querySelector("#inline1");
                 let inline2El = document.querySelector("#inline2");
                 let inline3El = document.querySelector("#inline3");
@@ -122,7 +107,23 @@
                         })
                     })
                 }
+
+                if(document.querySelector("#chart")){
+                    var chart = bb.generate({
+    bindto: "#chart",
+    data: {
+        type: "donut",
+        columns: [
+            ["data1", val],
+            ["data2", 90]
+        ],
+       
+    }
+});
+                }
             </script>
+            <script type="text/javascript" src="/js/dump.js"></script>
+
 </body>
 
 </html>

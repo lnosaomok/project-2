@@ -1,0 +1,1 @@
+const rad = "red"

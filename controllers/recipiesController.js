@@ -5,9 +5,7 @@ const axios = require("axios");
 
 const User = require("../models/users.js");
 router.get("/search", async(req, res) => {
-    req.session.search = req.session.search ?
-        req.session.search :
-        req.query.search;
+    req.session.search = req.query.search ? req.query.search : req.session.search;
     let query = req.query.search ? req.query.search : req.session.search;
 
     let url = `https://api.edamam.com/search?q=${query}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=0&to=10`;
@@ -27,6 +25,7 @@ router.get("/search", async(req, res) => {
             res.render("recipes/index.ejs", {
                 recipes: response.data.hits,
                 currentUser: req.session.currentUser,
+                val: 10
             });
         })
         .catch(function(error) {
@@ -35,6 +34,7 @@ router.get("/search", async(req, res) => {
 });
 
 router.get("/page2", async(req, res) => {
+    console.log(req.session.search);
     let url = `https://api.edamam.com/search?q=${req.session.search}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=11&to=20`;
 
     let user = await User.findById("5f9c55d23fd4a051f711dfc8");
@@ -51,6 +51,7 @@ router.get("/page2", async(req, res) => {
             res.render("recipes/index2.ejs", {
                 recipes: response.data.hits,
                 currentUser: req.session.currentUser,
+                val: 10
             });
         })
         .catch(function(error) {
@@ -78,6 +79,7 @@ router.get("/page3", async(req, res) => {
             res.render("recipes/index3.ejs", {
                 recipes: response.data.hits,
                 currentUser: req.session.currentUser,
+                val: null
             });
         })
         .catch(function(error) {
@@ -92,6 +94,7 @@ router.get("/", async(req, res) => {
     res.render("recipes/index.ejs", {
         recipes: [],
         currentUser: req.session.currentUser,
+        val: null
 
         //const recipies = await
     });
