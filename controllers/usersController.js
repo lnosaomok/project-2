@@ -5,93 +5,99 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../models/users.js");
 router.get("/new", (req, res) => {
-    res.render("users/new.ejs", { currentUser: req.session.currentUser ,  val: null});
+    res.render("users/new.ejs", {
+        currentUser: req.session.currentUser,
+        val: null,
+    });
 });
 router.get("/new2", (req, res) => {
-    res.render("users/new2.ejs", { currentUser: req.session.currentUser ,  val: null});
+    res.render("users/new2.ejs", {
+        currentUser: req.session.currentUser,
+        val: null,
+    });
 });
 
 /// Create User
-router.post(
-    "/", [
-        check("username", "username is required").not().isEmpty(),
-        check(
-            "password",
-            "Please enter a password with 6 or more characters"
-        ).isLength({ min: 6 }),
-    ],
-    async(req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-        const { username, password } = req.body;
-        try {
-            let user = await User.findOne({ username });
+router.post("/", async(req, res) => {
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    // }
+    const { username, password } = req.body;
 
-            if (user) {
-                return res.status(400).json({ msg: "User already exists" });
-            }
+    console.log(username, password);
+    try {
+        // let user = await User.findOne({ username });
 
-            req.body.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-            let createdUser = await User.create({ username, password });
+        // if (user) {
+        //     return res.status(400).json({ msg: "User already exists" });
+        // }
 
-            req.session.currentUser = createdUser;
+        req.body.password = bcrypt.hashSync(
+            req.body.password,
+            bcrypt.genSaltSync(10)
+        );
 
-            // await console.log(req.session.currentUser);
-            console.log(req.session.currentUser);
-            res.redirect("/users/new2");
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Server Error");
-        }
+        console.log(req.body.password);
+        let pass = req.body.password;
+        const newUser = new User({
+            username,
+            password: pass,
+        });
+
+        const userSaves = await newUser.save();
+        // let createdUser = await User.create({ username, pass });
+
+        req.session.currentUser = userSaves;
+
+        // await console.log(req.session.currentUser);
+        //console.log(req.session.currentUser);
+        res.redirect("/users/new2");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err);
     }
-);
+});
 
 ///Update User Prefrences
 
 router.post("/userPreferences", async(req, res) => {
-    macros = [];
-    let macros1 = {};
-    let macros2 = {};
-    let macros3 = {};
-    let macros4 = {};
-    if (req.body.amounts[0] !== "") {
-        macros1["CHOCDF"] = req.body.amounts[0];
-        macros.push(macros1);
-    }
-    if (req.body.amounts[1] !== "") {
-        macros2["FAT"] = req.body.amounts[1];
-        macros.push(macros2);
-    }
-    if (req.body.amounts[2] !== "") {
-        macros3["PROCNT"] = req.body.amounts[2];
-        macros.push(macros3);
-    }
-    if (req.body.amounts[3] !== "") {
-        macros4["SUGAR"] = req.body.amounts[3];
-        macros.push(macros4);
-    }
-
-    req.body.macros = macros;
     console.log(req.session);
+    let user = await User.findById(req.session.currentUser._id);
+
+    if (!user) return res.status(404).json({ msg: "User not found" });
+
     try {
-        //let user = await User.findById(req.sessions.currentuser.username);
+        await User.findByIdAndUpdate(req.session.currentUser._id, {
+            $set: {
+                macrosCarbs: req.body.amounts1,
+            },
+        });
 
-        // if (!user) return res.status(404).json({ msg: 'User not found' });
+        await User.findByIdAndUpdate(req.session.currentUser._id, {
+            $set: {
+                macrosFat: req.body.amounts2,
+            },
+        });
 
-        // make sure user owns preferences
+        await User.findByIdAndUpdate(req.session.currentUser._id, {
+            $set: {
+                macrosProtein: req.body.amounts3,
+            },
+        });
+
+        await User.findByIdAndUpdate(req.session.currentUser._id, {
+            $set: {
+                macrosSugar: req.body.amounts4,
+            },
+        });
 
         await User.findByIdAndUpdate(req.session.currentUser._id, {
             $set: {
                 diet_label: req.body.diet_label,
             },
         });
-        await User.findByIdAndUpdate(req.session.currentUser._id, {
-            $set: {
-                macros: req.body.macros,
-            },
-        });
+
         await User.findByIdAndUpdate(req.session.currentUser._id, {
             $set: {
                 calories: req.body.calories,
@@ -99,7 +105,7 @@ router.post("/userPreferences", async(req, res) => {
         });
         res.redirect("/recipies");
     } catch (err) {
-        console.error(err.message);
+        console.error("message", err.message);
         res.status(500).send("Server Error");
     }
 });

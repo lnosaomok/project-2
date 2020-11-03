@@ -5,23 +5,41 @@
 
 
             <div class="card sticky-action">
-                <form id="form">
+
+                <form id="favourites-form" name="favouritesForm">
                     <p>
                         <label>
-                        <input type="checkbox" />
+                        <input type="checkbox" name="favourite" id="favourite"
+                            value="<%=  JSON.stringify(element) %>" />
+                        <input type="hidden" name="user" id="user" value="<%= currentUser._id %>">
                         <span class="sr-only">Red</span>
                     </label>
                     </p>
+                    <button id="hidden-submit" type="submit"></button>
                 </form>
+                <a class="waves-effect waves-light btn modal-trigger" id="m<%= index %>" href="#modal<%= index %>">Modal</a>
+                <div id="modal<%= index %>" class="modal">
+                    <div class="modal-content">
+                        <h4>Modal Header</h4>
+                        <div class="inner"></div>
+                        <div class="inner1"><input type="hidden" value="" /></div>
+                        <div class="inner2"><input type="hidden" value="" /></div>
+                        <div class="inner3"><input type="hidden" value="" /></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                        <input type="hidden" value="<%= element.nutrients[0].quantity %>" />
+                    </div>
+                </div>
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="<%= element.recipe.image %>">
+                    <img class="activator" id="activator" src="<%= element.image %>">
                 </div>
                 <div class="card-content">
-                    <a class="btn-floating waves-effect waves-light red right"> <i class="material-icons">add</i></a>
-                    <span class="card-title activator grey-text text-darken-4"><%= element.recipe.label %></span>
+                    <a class="btn-floating waves-effect waves-light red right" id="add-favourite"> <i class="material-icons">add</i></a>
+                    <span class="card-title activator grey-text text-darken-4"><%= element.label %></span>
                     <p>
                         <a href="#">
-                            <%= element.recipe.source %>
+                            <%= element.source %>
                         </a>
                     </p>
                 </div>
@@ -29,14 +47,17 @@
                     <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
                     <h4>Ingredients</h4>
                     <ol>
-                        <% element.recipe.ingredientLines.forEach((one, index) => { %>
+                        <% element.ingredientLines.forEach((one, index) => { %>
 
                             <li>
                                 <%= one %>
                             </li>
                             <% }) %>
                     </ol>
-                    <a href="<%= element.recipe.source %>">Cooking Instructions from <%= element.recipe.source %></a>
+
+
+                    <a href="<%= element.source %>">Cooking Instructions from <%= element.source %></a>
+
                 </div>
 
             </div>

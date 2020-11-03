@@ -12,6 +12,10 @@
     color: white;
 }
 
+#active-fav {
+    background-color: lightgray;
+}
+
 #favourites-form input[type="checkbox"]+span:not(.lever):before {
     color: white;
     border: 2px solid white;
@@ -34,6 +38,20 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+}
+
+.container-inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-nav {
+    width: 30vw;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin-right: 2rem;
+    overflow-y: auto;
 }
 
 .diet {
@@ -3263,9 +3281,25 @@ th {
     }
 }
 
+.inner-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-img {
+    width: 50%;
+    height: 300px;
+    text-align: center;
+}
+
 .collection {
     margin: 0.5rem 0 1rem 0;
-    border: 1px solid #e0e0e0;
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -3624,7 +3658,7 @@ table span.badge {
 .container {
     margin: 40px auto;
     max-width: 1280px;
-    width: 90%;
+    width: 80%;
 }
 
 @media only screen and (min-width: 601px) {
@@ -7871,8 +7905,6 @@ input[type="range"]::-ms-thumb {
     left: 0;
     top: 0;
     margin: 0;
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
     height: 100%;
     height: calc(100% + 60px);
     height: -moz-calc(100%);
@@ -7880,11 +7912,6 @@ input[type="range"]::-ms-thumb {
     background-color: #fff;
     z-index: 999;
     overflow-y: auto;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateX(-105%);
-    transform: translateX(-105%);
 }
 
 .sidenav.right-aligned {

@@ -2,19 +2,37 @@ const express = require("express");
 const router = express.Router();
 const Favourite = require("../models/favorites");
 
-router.get("/", async(req, res) => {
-    let recipies = await Favourite.find({
+router.get("/:id/:index", async(req, res) => {
+    let favRecipes = await Favourite.find({
         user: req.session.currentUser._id,
     });
-    res.send(recipies);
+
+    let foundFavourite = await Favourite.findById(req.params.id);
+    let activeIndex = req.params.index;
+    res.render("favourites/show.ejs", {
+        element: foundFavourite,
+        recipes: favRecipes,
+        currentUser: req.session.currentUser,
+        val: parseInt(req.session.currentUser.macrosFat),
+    });
 });
 
-router.post("/", (req, res) => {
-    //res.send(req.body);
-    req.body.favourite = JSON.parse(req.body.favourite);
+router.get("/", async(req, res) => {
+    let favRecipes = await Favourite.find({
+        user: req.session.currentUser._id,
+    });
+    res.render("favourites/index.ejs", {
+        element: favRecipes[0],
+        recipes: favRecipes,
+        currentUser: req.session.currentUser,
+        val: parseInt(req.session.currentUser.macrosFat),
+    });
+});
+
+router.post("/", async(req, res) => {
     try {
-        Favourite.create(req.body, (err, createdFavourite) => {
-            console.log("favourite is created", createdFavourite);
+        await Favourite.create(req.body, (err, createdFavourite) => {
+            console.log("favourite is created", createdFavourite, err);
         });
 
         // await console.log(req.session.currentUser);
