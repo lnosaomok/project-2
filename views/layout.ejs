@@ -145,11 +145,15 @@
                 document.querySelectorAll(".modal-trigger").forEach((one) => {
                     one.addEventListener("click", function(e) {
                         let recipeMacro = e.target.nextElementSibling.children[0].nextElementSibling.children[1].value
-                        console.log(recipeMacro / "<%- val %>")
                         e.target.nextElementSibling.children[0].children[1].id = "chart1"
+
+
                         e.target.nextElementSibling.children[0].children[2].id = "chart2"
+
+
+
                         e.target.nextElementSibling.children[0].children[3].id = "chart3"
-                        e.target.nextElementSibling.children[0].children[4].id = "chart4"
+                        e.target.nextElementSibling.children[0].children[4].id = "chart4";
                         var chart1 = bb.generate({
                             bindto: "#chart1",
                             data: {
@@ -158,21 +162,33 @@
                                     ["data1", "<%- val %>"],
                                     ["data2", 90]
                                 ],
+                                size: {
+                                    width: 160,
+                                    height: 160
+                                },
+                                pie: {
+                                    innerRadius: 45,
+                                    expand: false
+                                },
 
                             }
                         });
 
+
+
                         var chart2 = bb.generate({
                             bindto: "#chart2",
                             data: {
-                                type: "donut",
+                                type: "<%- currentUser.macrosFat.length > 0 %>" ? "donut" : "",
                                 columns: [
-                                    ["data1", "<%- val %>"],
+                                    ["data1", "<%- currentUser.macrosSugar %>"],
                                     ["data2", 90]
                                 ],
 
                             }
                         });
+
+
 
                         var chart3 = bb.generate({
                             bindto: "#chart3",
@@ -186,6 +202,7 @@
                             }
                         });
 
+
                         var chart4 = bb.generate({
                             bindto: "#chart4",
                             data: {
@@ -197,8 +214,16 @@
 
                             }
                         });
+
                     })
+
                 })
+
+
+
+
+
+
 
                 document.querySelectorAll(".modal-close").forEach((one) => {
                     one.addEventListener("click", function(e) {

@@ -12,6 +12,7 @@ router.get("/:id/:index", async(req, res) => {
     res.render("favourites/show.ejs", {
         element: foundFavourite,
         recipes: favRecipes,
+        activeIndex: activeIndex,
         currentUser: req.session.currentUser,
         val: parseInt(req.session.currentUser.macrosFat),
     });
@@ -24,6 +25,7 @@ router.get("/", async(req, res) => {
     res.render("favourites/index.ejs", {
         element: favRecipes[0],
         recipes: favRecipes,
+        activeIndex: 0,
         currentUser: req.session.currentUser,
         val: parseInt(req.session.currentUser.macrosFat),
     });

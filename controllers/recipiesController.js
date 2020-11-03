@@ -8,7 +8,7 @@ router.get("/search", async(req, res) => {
             req.session.search = req.query.search ? req.query.search : req.session.search;
             let query = req.query.search ? req.query.search : req.session.search;
 
-            let url = `https://api.edamam.com/search?q=${query}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845&from=0&to=10`;
+            let url = `https://api.edamam.com/search?q=${query}&app_id=313605df&app_key=3a360d7219529db4accf27b5c25d9845`;
 
             let user = await User.findById(req.session.currentUser._id);
 
@@ -39,9 +39,9 @@ router.get("/search", async(req, res) => {
 
   axios
     .get(url)
-    .then(function (response) {
+    .then(async function (response) {
       let resp = response.data.hits;
-      resp = resp.map((each) => {
+      resp = resp.filter((each) => {
         let recipeLabels = each.recipe.label.toLowerCase();
         query = query.toLowerCase();
 
@@ -50,10 +50,12 @@ router.get("/search", async(req, res) => {
         }
       });
 
+      console.log(resp);
+
       let transformedResult = [];
       let transformedResult1 = [];
 
-      resp.forEach((result) => {
+      await resp.forEach((result) => {
         transformedResult.push(result);
       });
       transformedResult.forEach((result) => {
