@@ -40,6 +40,15 @@
     justify-content: space-around;
 }
 
+#meal-schedule {
+    width: 90%;
+    display: none;
+}
+
+.unhide {
+    display: block;
+}
+
 .container-inner {
     display: flex;
     flex-direction: row;
@@ -5010,6 +5019,7 @@ small {
     transition: box-shadow 0.25s;
     transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
     border-radius: 2px;
+    padding: 1rem;
 }
 
 .card .card-title {}

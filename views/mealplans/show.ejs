@@ -1,0 +1,59 @@
+<div class="container">
+
+    <div class="card-panel">
+        <button class="btn btn-flat secondary-content"><i class="material-icons left">arrow_back</i></button>
+
+        <h3>
+            Meals For
+            <%= mealPlan.dateWithYear  %>
+                <form action="/logs/<%= " log._id " %>?_method=DELETE" method="POST">
+                    <button class="btn btn-flat secondary-content"><i class="material-icons">delete</i></button>
+                </form>
+
+        </h3>
+
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1">Breakfast</a></li>
+                <li class="tab col s3"><a href="#test2">Lunch</a></li>
+                <li class="tab col s3"><a href="#test3">Dinner</a></li>
+            </ul>
+        </div>
+        <div id="test1" class="col s12">
+            <% if (mealPlan.breakfast !== "") { %>
+                <h2>
+                    <%= mealPlan.breakfast.label%>
+                </h2>
+                <% } else { %>
+                    <p>Not meal here!</p>
+                    <a href="/mealplan/new">Add Meal</a>
+
+                    <% } %>
+        </div>
+        <div id="test2" class="col s12">
+            <% if (mealPlan.lunch !== "") { %>
+                <h2>
+                    <%= mealPlan.lunch.label%>
+                </h2>
+                <% } else { %>
+                    <p>Not meal here!</p>
+                    <a href="/mealplan/new">Add Meal</a>
+
+                    <% } %>
+        </div>
+        <div id="test3" class="col s12">
+            <% if (mealPlan.dinner !== "") { %>
+                <h2>
+                    <%= mealPlan.dinner.label%>
+                </h2>
+                <% } else { %>
+                    <p>Not meal here!</p>
+                    <a href="/mealplan/new">Add Meal</a>
+
+                    <% } %>
+        </div>
+    </div>
+
+</div>

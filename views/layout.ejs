@@ -135,11 +135,21 @@
                     var instances = M.FloatingActionButton.init(elems);
                 });
 
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.collapsible');
+                    var instances = M.Collapsible.init(elems);
+                });
+                var tab_el = document.querySelectorAll('.tabs');
+                var instance = M.Tabs.init(tab_el);
+
 
 
                 document.addEventListener('DOMContentLoaded', function() {
+                    const options = {
+                        format: 'm/dd'
+                    }
                     var elems = document.querySelectorAll('.datepicker');
-                    var instances = M.Datepicker.init(elems);
+                    var instances = M.Datepicker.init(elems, options);
                 });
 
                 document.querySelectorAll(".modal-trigger").forEach((one) => {
@@ -179,9 +189,9 @@
                         var chart2 = bb.generate({
                             bindto: "#chart2",
                             data: {
-                                type: "<%- currentUser.macrosFat.length > 0 %>" ? "donut" : "",
+                                type: "donut",
                                 columns: [
-                                    ["data1", "<%- currentUser.macrosSugar %>"],
+                                    ["data1", 10],
                                     ["data2", 90]
                                 ],
 
@@ -243,6 +253,11 @@
                     var elems = document.querySelectorAll('.modal');
                     var instances = M.Modal.init(elems);
                 });
+
+                document.querySelector("#show-schedule").addEventListener("click", function(e) {
+
+                    document.querySelector("#meal-schedule").style.display = "block"
+                })
 
                 // if (document.querySelector("#chart")) {
                 //     var chart = bb.generate({

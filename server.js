@@ -62,9 +62,12 @@ const usersController = require("./controllers/usersController");
 const sessionsController = require("./controllers/sessionsController");
 const recipiesController = require("./controllers/recipiesController");
 const favouritesController = require("./controllers/favouritesController");
+const mealPlansController = require("./controllers/mealPlansController");
+
 app.use("/users", usersController);
 app.use("/favourites", favouritesController);
 app.use("/recipies", recipiesController);
+app.use("/mealplan", mealPlansController);
 app.use("/sessions", sessionsController);
 
 //___________________
