@@ -95,7 +95,6 @@
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
-    margin-right: 5rem;
     overflow-y: auto;
     max-width: 300px;
 }
@@ -3347,7 +3346,6 @@ th {
 .collection {
     margin: 0.5rem 0 1rem 0;
     border-radius: 2px;
-    overflow: hidden;
     position: relative;
 }
 
@@ -3703,7 +3701,7 @@ table span.badge {
 
 .container {
     margin: 40px auto;
-    max-width: 1280px;
+    max-width: 780px;
     width: 80%;
 }
 
@@ -5346,6 +5344,7 @@ small {
     background-color: #fff;
     margin: 0 auto;
     white-space: nowrap;
+    border-bottom: 1px solid salmon;
 }
 
 .tabs.tabs-transparent {
@@ -5426,7 +5425,7 @@ small {
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: #f6b2b5;
+    background-color: transparent;
     will-change: left, right;
 }
 
@@ -5446,6 +5445,35 @@ small {
     .tabs .tab a {
         padding: 0 12px;
     }
+}
+
+.tabs>li>a.active {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid salmon;
+}
+
+.header-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+#em {
+    color: black;
+}
+
+.mealPlan-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabs>li>a:active {
+    border-bottom-color: transparent;
 }
 
 .material-tooltip {
