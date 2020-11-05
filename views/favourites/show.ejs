@@ -8,7 +8,7 @@
                 <% recipes.forEach((element, index) => { %>
 
 
-                    <li class="collection-item" id="<%- index === 0?'active-fav': ''%>">
+                    <li class="collection-item" id="<%= activeIndex == index ?'active-fav': ''%>">
                         <a href="#" onclick="window.location='/favourites/<%= element._id %>/<%= index %>';">
                             <%= element.favourite.label %>
                         </a>
