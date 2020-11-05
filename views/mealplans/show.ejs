@@ -42,10 +42,10 @@
                                     </li>
                                     <% }) %>
                             </ol>
-                            <a href="#" onclick="window.location='<%= mealPlan.breakfast.source %>';">Cooking Instructions
-                            from
-                            <%= mealPlan.breakfast.source %></a>
-
+                            Cooking Instructions from
+                            <a href="#" onclick="window.open('<%=mealPlan.breakfast.url%>', '_blank');">
+                                <%= mealPlan.breakfast.url%>
+                            </a>
                         </div>
                     </div>
 
@@ -76,9 +76,11 @@
                                     </li>
                                     <% }) %>
                             </ol>
-                            <a href="#" onclick="window.location='<%= mealPlan.lunch.source %>';">Cooking Instructions
-                            from
-                            <%= mealPlan.lunch.source %></a>
+                            Cooking Instructions from
+                            <a href="#" onclick="window.open('<%=mealPlan.lunch.url%>', '_blank');">
+
+                                <%= mealPlan.lunch.url %>
+                            </a>
 
                         </div>
                     </div>
@@ -110,9 +112,10 @@
                                     </li>
                                     <% }) %>
                             </ol>
-                            <a href="#" onclick="window.location='<%= mealPlan.dinner.source %>';">Cooking Instructions
-                            from
-                            <%= mealPlan.dinner.source %></a>
+                            Cooking Instructions from
+                            <a href="#" onclick="window.open('<%=mealPlan.dinner.url%>', '_blank');">
+                                <%= mealPlan.dinner.url %>
+                            </a>
 
                         </div>
                     </div>
