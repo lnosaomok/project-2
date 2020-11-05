@@ -3,6 +3,14 @@ const router = express.Router();
 const User = require("../models/users.js");
 const Meal_Plan = require("../models/meal_plan");
 
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect("/sessions/new");
+    }
+};
+
 router.get("/:id/edit", async(req, res) => {
     Meal_Plan.findById(req.params.id, (error, mealplan) => {
         res.render("mealplans/edit.ejs", {
@@ -27,7 +35,7 @@ router.get("/:id/edit", async(req, res) => {
     });
 });
 
-router.get("/new", async(req, res) => {
+router.get("/new", isAuthenticated, async(req, res) => {
     res.render("mealplans/new.ejs", {
         currentUser: req.session.currentUser,
         valFat: req.session.currentUser.macrosFat !== "" ?
@@ -72,7 +80,7 @@ router.get("/:id", async(req, res) => {
     });
 });
 
-router.get("/", async(req, res) => {
+router.get("/", isAuthenticated, async(req, res) => {
     let meal_plans = await Meal_Plan.find({
         user: req.session.currentUser._id,
     });

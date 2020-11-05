@@ -2,6 +2,14 @@ const express = require("express");
 const router = express.Router();
 const Favourite = require("../models/favorites");
 
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect("/sessions/new");
+    }
+};
+
 router.get("/:id/:index", async(req, res) => {
     let favRecipes = await Favourite.find({
         user: req.session.currentUser._id,
@@ -32,7 +40,7 @@ router.get("/:id/:index", async(req, res) => {
     });
 });
 
-router.get("/", async(req, res) => {
+router.get("/", isAuthenticated, async(req, res) => {
     let favRecipes = await Favourite.find({
         user: req.session.currentUser._id,
     });

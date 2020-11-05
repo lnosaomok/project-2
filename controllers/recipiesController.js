@@ -3,8 +3,16 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect("/sessions/new");
+    }
+};
+
 const User = require("../models/users.js");
-router.get("/search", async(req, res) => {
+router.get("/search", isAuthenticated, async(req, res) => {
             req.session.search = req.query.search ? req.query.search : req.session.search;
             let query = req.query.search ? req.query.search : req.session.search;
 
@@ -339,7 +347,7 @@ router.get("/page3", async (req, res) => {
   //const recipies = await
 });
 
-router.get("/", async (req, res) => {
+router.get("/", isAuthenticated, async (req, res) => {
   res.render("recipes/index.ejs", {
     recipes: [],
     currentUser: req.session.currentUser,
