@@ -157,8 +157,8 @@ router.post("/new", async(req, res) => {
     } else {
         let meal_planDateExists = await Meal_Plan.findOne({
             mealDate: date_mealPlan,
+            user: req.session.currentUser._id,
         });
-        console.log(meal_planDateExists, date_mealPlan);
         if (!meal_planDateExists) {
             let breakfast = {};
             let lunch = {};

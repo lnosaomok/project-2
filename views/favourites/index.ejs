@@ -38,10 +38,10 @@
                             <h6><a href="#" id="show-schedule">Add to food timetable</a></h6>
                         </div>
                         <div id="meal-schedule">
-                            <form action="/mealplan" method="POST">
+                            <form id="meal-plan-form1" action="/mealplan" method="POST">
                                 <input type="text" class="datepicker" name="mealDate" placeholder="Choose date" required>
                                 <div class="input-field col s6">
-                                    <select name="mealTime" required>
+                                    <select name="mealTime" id="meal-time" required>
                                     <option value="" disabled selected>Choose meal time</option>
                                     <option value="breakfast">Breakfast</option>
                                     <option value="lunch">Lunch</option>

@@ -123,12 +123,22 @@
                     })
                 }
 
-                // $(function() {
-                //     $('#favourites-form').on('submit', function(e) {
+                $(function() {
+                    $('#meal-plan-form1').on('submit', function(e) {
+                        M.toast({
+                            html: 'Saved!'
+                        })
+                    });
+                });
 
+                $(function() {
+                    $('#meal-plan-form2').on('submit', function(e) {
+                        M.toast({
+                            html: 'Saved!'
+                        })
+                    });
+                });
 
-                //     });
-                // });
 
                 document.addEventListener('DOMContentLoaded', function() {
                     var elems = document.querySelectorAll('.fixed-action-btn');
@@ -146,7 +156,8 @@
 
                 document.addEventListener('DOMContentLoaded', function() {
                     const options = {
-                        format: 'm/dd'
+                        format: 'm/dd',
+                        yearRange: [new Date().getFullYear()]
                     }
                     var elems = document.querySelectorAll('.datepicker');
                     var instances = M.Datepicker.init(elems, options);
