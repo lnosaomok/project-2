@@ -7,13 +7,21 @@ const User = require("../models/users.js");
 router.get("/new", (req, res) => {
     res.render("users/new.ejs", {
         currentUser: req.session.currentUser,
-        val: null,
+        valFat: null,
+        valSugar: null,
+        valCarbs: null,
+        valProtein: null,
+        valCalories: null,
     });
 });
 router.get("/new2", (req, res) => {
     res.render("users/new2.ejs", {
         currentUser: req.session.currentUser,
-        val: null,
+        valFat: null,
+        valSugar: null,
+        valCarbs: null,
+        valProtein: null,
+        valCalories: null,
     });
 });
 
@@ -103,6 +111,9 @@ router.post("/userPreferences", async(req, res) => {
                 calories: req.body.calories,
             },
         });
+        let userAfterSave = await User.findById(req.session.currentUser._id);
+        req.session.currentUser = userAfterSave;
+        console.log(req.session.currentUser);
         res.redirect("/recipies");
     } catch (err) {
         console.error("message", err.message);

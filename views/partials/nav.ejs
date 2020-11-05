@@ -1,19 +1,26 @@
 <nav>
-    <div class="nav-wrapper">
-        <ul id="nav-mobile" class="left ">
-            <li>
-                <a href="/recipies">
-                    Search Recipes
-                </a>
+    <ul id="dropdown1" class="dropdown-content ">
+        <li><a href="/recipies">Search for Recipes</a></li>
+        <li><a href="/favourites">My Saved Recipes</a></li>
 
-                <li>
-                    <a href="/favourites">
-                    Saved Recipes
-                </a>
-                </li>
-            </li>
+    </ul>
+
+    <ul id="dropdown2" class="dropdown-content ">
+        <li><a href="/mealplan">Meal Schedules</a></li>
+        <li><a href="/mealplan/search">View Today's Schedule</a></li>
+
+    </ul>
+
+    <ul id="dropdown3" class="dropdown-content "></ul>
+    <div class="nav-wrapper">
+        <ul class="left" id="nav-mobile">
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Recipies<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Meal Plans<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+
         </ul>
-        <ul class="right">
+        <ul class="right" id="nav-mobile">
 
             <% if (currentUser) { %>
                 <li>Welcome

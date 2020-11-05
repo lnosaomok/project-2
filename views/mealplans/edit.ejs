@@ -1,0 +1,159 @@
+<div class="container form1">
+    <h3 class="center-align">Edit meal Plan</h3>
+
+    <form class="col s12" action="/mealplan/<%= mealplan._id %>?_method=PUT" method="POST">
+        <div class="row ">
+            <div class="col s12">
+                Meal Plan Date
+                <input type="hidden" name="date_mealPlan" value="<%= mealplan.mealDate %>">
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#test1">Breakfast</a></li>
+                        <li class="tab col s3"><a href="#test2">Lunch</a></li>
+                        <li class="tab col s3"><a href="#test3">Dinner</a></li>
+                    </ul>
+                </div>
+                <div id="test1" class="col s12">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Breakfast
+                                <input type="checkbox" name="includeBreakfast" checked>
+                                <span class="lever"></span>
+                                Include Breakfast
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name2" name="breakfastFoodName" value="<%= mealplan.breakfast ? mealplan.breakfast.label : ''%>" type="text">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="breakfastIngredients"><%= mealplan.breakfast ? mealplan.breakfast.ingredientLines.toString() : '' %></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="breakfastInstructions"><%= mealplan.breakfast ? mealplan.breakfast.url : '' %></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test2" class="col s12">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Lunch
+                                <input type="checkbox" name="includeLunch" checked>
+                                <span class="lever"></span>
+                                Include Lunch
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name2" type="text" name="lunchFoodName" value="<%= mealplan.lunch ? mealplan.lunch.label : ''%>">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="lunchIngredients"><%= mealplan.lunch ? mealplan.lunch.ingredientLines.toString() : '' %></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="lunchInstructions"><%= mealplan.lunch ? mealplan.lunch.url : '' %></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test3" class="col s12 ">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Dinner
+                                <input type="checkbox" name="includeDinner" checked>
+                                <span class="lever"></span>
+                                Include Dinner
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name2" type="text" name="dinnerFoodName" value="<%= mealplan.dinner ? mealplan.dinner.label : '' %>">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="dinnerIngredients"><%= mealplan.dinner ? mealplan.dinner.ingredientLines.toString() : '' %></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="dinnerInstructions"><%= mealplan.dinner ? mealplan.dinner.url : ''%></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <input type="submit" class="btn">
+    </form>
+
+    </div>

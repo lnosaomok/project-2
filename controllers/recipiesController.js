@@ -101,7 +101,26 @@ router.get("/search", async(req, res) => {
       res.render("recipes/index.ejs", {
         recipes: transformedResult1,
         currentUser: req.session.currentUser,
-        val: parseInt(user.macrosFat),
+        valFat:
+          req.session.currentUser.macrosFat !== ""
+            ? parseInt(req.session.currentUser.macrosFat)
+            : 0,
+        valSugar:
+          req.session.currentUser.macrosSugar !== ""
+            ? parseInt(req.session.currentUser.macrosSugar)
+            : 0,
+        valCarbs:
+          req.session.currentUser.macrosCarbs !== ""
+            ? parseInt(req.session.currentUser.macrosCarbs)
+            : 0,
+        valProtein:
+          req.session.currentUser.macrosProtein !== ""
+            ? parseInt(req.session.currentUser.macrosProtein)
+            : 0,
+        valCalories:
+          req.session.currentUser.calories !== null
+            ? req.session.currentUser.calories
+            : 0,
       });
     })
     .catch(function (error) {
@@ -195,7 +214,26 @@ router.get("/page2", async (req, res) => {
       res.render("recipes/index2.ejs", {
         recipes: transformedResult1,
         currentUser: req.session.currentUser,
-        val: parseInt(user.macrosFat),
+        valFat:
+          req.session.currentUser.macrosFat !== ""
+            ? parseInt(req.session.currentUser.macrosFat)
+            : 0,
+        valSugar:
+          req.session.currentUser.macrosSugar !== ""
+            ? parseInt(req.session.currentUser.macrosSugar)
+            : 0,
+        valCarbs:
+          req.session.currentUser.macrosCarbs !== ""
+            ? parseInt(req.session.currentUser.macrosCarbs)
+            : 0,
+        valProtein:
+          req.session.currentUser.macrosProtein !== ""
+            ? parseInt(req.session.currentUser.macrosProtein)
+            : 0,
+        valCalories:
+          req.session.currentUser.calories !== null
+            ? req.session.currentUser.calories
+            : 0,
       });
     })
     .catch(function (error) {
@@ -305,7 +343,26 @@ router.get("/", async (req, res) => {
   res.render("recipes/index.ejs", {
     recipes: [],
     currentUser: req.session.currentUser,
-    val: null,
+    valFat:
+      req.session.currentUser.macrosFat !== ""
+        ? parseInt(req.session.currentUser.macrosFat)
+        : 0,
+    valSugar:
+      req.session.currentUser.macrosSugar !== ""
+        ? parseInt(req.session.currentUser.macrosSugar)
+        : 0,
+    valCarbs:
+      req.session.currentUser.macrosCarbs !== ""
+        ? parseInt(req.session.currentUser.macrosCarbs)
+        : 0,
+    valProtein:
+      req.session.currentUser.macrosProtein !== ""
+        ? parseInt(req.session.currentUser.macrosProtein)
+        : 0,
+    valCalories:
+      req.session.currentUser.calories !== null
+        ? req.session.currentUser.calories
+        : 0,
   });
 });
 

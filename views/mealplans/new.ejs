@@ -1,0 +1,159 @@
+<div class="container form1">
+    <h3 class="center-align">New meal Plan</h3>
+
+    <form class="col s12" action="/mealplan/new" method="POST">
+        <div class="row">
+            <div class="col s12">
+                Choose Date
+                <input type="text" name="date_mealPlan" class="datepicker" required>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#test1">Breakfast</a></li>
+                        <li class="tab col s3"><a href="#test2">Lunch</a></li>
+                        <li class="tab col s3"><a href="#test3">Dinner</a></li>
+                    </ul>
+                </div>
+                <div id="test1" class="col s12">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Breakfast
+                                <input type="checkbox" name="includeBreakfast" checked>
+                                <span class="lever"></span>
+                                Include Breakfast
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input value="" id="first_name2" name="breakfastFoodName" type="text">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="breakfastIngredients"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="breakfastInstructions"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test2" class="col s12">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Lunch
+                                <input type="checkbox" name="includeLunch" checked>
+                                <span class="lever"></span>
+                                Include Lunch
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input value="" id="first_name2" type="text" name="lunchFoodName">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="lunchIngredients"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="lunchInstructions"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test3" class="col s12 ">
+                    <div class="foodTimeTab">
+                        <div class="switch">
+                            <label>
+                                Exclude Dinner
+                                <input type="checkbox" name="includeDinner" checked>
+                                <span class="lever"></span>
+                                Include Dinner
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input value="" id="first_name2" type="text" name="dinnerFoodName">
+                                <span class="helper-text" data-error="wrong" data-success="right">Meal Name</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="dinnerIngredients"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Ingrediets
+                                        list (comma separated)</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" name="dinnerInstructions"></textarea>
+                                    <span class="helper-text" data-error="wrong" data-success="right">Enter Preparation
+                                        instructions link</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <input type="submit" class="btn">
+    </form>
+
+    </div>

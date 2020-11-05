@@ -17,6 +17,7 @@
 
 
 <body>
+
     <%- include("./partials/nav.ejs") %>
         <%- body %>
             <script type="text/javascript" src="/js/materialize.js"></script>
@@ -99,6 +100,12 @@
                     });
                 })
 
+                $(document).ready(function() {
+                    $(".dropdown-trigger").dropdown();
+                });
+
+
+
                 if (document.querySelector("#favourites-form") !== null) {
                     document.querySelectorAll("#favourites-form").forEach((element, index) => {
                         element.addEventListener("submit", function(e) {
@@ -154,76 +161,119 @@
 
                 document.querySelectorAll(".modal-trigger").forEach((one) => {
                     one.addEventListener("click", function(e) {
-                        let recipeMacro = e.target.nextElementSibling.children[0].nextElementSibling.children[1].value
+                        let recipeYield = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[1].value)
+                        let recipeCalories = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[2].value)
+                        let recipeMacroFat = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[3].value)
+                        let recipeMacroCarbs = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[4].value)
+                        let recipeMacroSugar = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+                        let recipeMacroProtein = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+
+
+
                         e.target.nextElementSibling.children[0].children[1].id = "chart1"
+                        e.target.nextElementSibling.children[0].children[2].id = "legend"
+
+                        let arr = []
+                        let colorsArr = [];
+                        let valuesArr = []
+                        console.log("<%-  valFat %>", "<%=  valSugar %>", "<%= valCarbs %>", "<%=  valProtein %>",
+                            "<%= valCalories %>")
+
+                        console.log(recipeMacroSugar, recipeYield, recipeCalories, recipeMacroCarbs, recipeMacroProtein, recipeMacroFat)
+
+                        if ("<%= valFat %>" != 0) {
+                            recipeMacroFat = recipeMacroFat / recipeYield
+                            let calc = recipeMacroFat / "<%= valFat %>"
+                            calc = Math.round(calc * 100)
+                            let innerArr1 = ['Fat', calc]
+                            arr.push(innerArr1);
+                            colorsArr.push("orange");
+                            valuesArr.push(0)
+                            console.log(calc)
+
+                        }
+
+                        if ("<%= valCarbs %>" != 0) {
+                            recipeMacroCarbs = recipeMacroCarbs / recipeYield
+                            let calc = recipeMacroCarbs / "<%= valCarbs %>"
+                            calc = Math.round(calc * 100)
+                            let innerArr2 = ['Carbs', calc]
+                            arr.push(innerArr2)
+                            colorsArr.push("indigo");
+                            valuesArr.push(0)
+                            console.log(calc)
 
 
-                        e.target.nextElementSibling.children[0].children[2].id = "chart2"
+                        }
+
+                        if ("<%= valProtein %>" != 0) {
+                            recipeMacroProtein = recipeMacroProtein / recipeYield
+                            let calc = recipeMacroProtein / "<%= valProtein %>"
+                            calc = Math.round(calc * 100)
+                            let innerArr3 = ['Protein', calc]
+                            arr.push(innerArr3);
+                            colorsArr.push("violet");
+                            valuesArr.push(0)
+                            console.log(calc)
 
 
+                        }
 
-                        e.target.nextElementSibling.children[0].children[3].id = "chart3"
-                        e.target.nextElementSibling.children[0].children[4].id = "chart4";
+                        if ("<%= valSugar %>" != 0) {
+                            recipeMacroSugar = recipeMacroSugar / recipeYield
+                            let calc = recipeMacroSugar / "<%= valSugar %>"
+                            calc = Math.round(calc)
+                            let innerArr4 = ['Sugar', calc]
+                            arr.push(innerArr4);
+                            colorsArr.push("yellow");
+                            valuesArr.push(0)
+                            console.log(calc)
+
+
+                        }
+
+                        if ("<%= valCalories %>") {
+                            recipeCalories = recipeCalories / recipeYield
+                            let calc = recipeCalories / "<%= valCalories %>"
+                            calc = Math.round(calc * 100)
+                            let innerArr5 = ['Calories', calc]
+                            arr.push(innerArr5);
+                            colorsArr.push("green");
+                            valuesArr.push(0)
+                            console.log(calc)
+
+
+                        }
+
+                        console.log(arr)
                         var chart1 = bb.generate({
-                            bindto: "#chart1",
                             data: {
-                                type: "donut",
-                                columns: [
-                                    ["data1", "<%- val %>"],
-                                    ["data2", 90]
-                                ],
-                                size: {
-                                    width: 160,
-                                    height: 160
+                                columns: arr,
+                                type: "gauge", // for ESM specify as: gauge()
+                            },
+                            legend: {
+                                contents: {
+                                    bindto: "#legend",
+                                    template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
+                                }
+                            },
+                            gauge: {
+                                type: "multi",
+                                max: 100,
+                                min: 0,
+                                expand: true,
+                                arcs: {
+                                    minWidth: 5
                                 },
-                                pie: {
-                                    innerRadius: 45,
-                                    expand: false
-                                },
+                                width: 110,
+                            },
 
-                            }
+                            size: {
+                                height: 250
+                            },
+                            bindto: "#chart1"
                         });
 
-
-
-                        var chart2 = bb.generate({
-                            bindto: "#chart2",
-                            data: {
-                                type: "donut",
-                                columns: [
-                                    ["data1", 10],
-                                    ["data2", 90]
-                                ],
-
-                            }
-                        });
-
-
-
-                        var chart3 = bb.generate({
-                            bindto: "#chart3",
-                            data: {
-                                type: "donut",
-                                columns: [
-                                    ["data1", "<%- val %>"],
-                                    ["data2", 90]
-                                ],
-
-                            }
-                        });
-
-
-                        var chart4 = bb.generate({
-                            bindto: "#chart4",
-                            data: {
-                                type: "donut",
-                                columns: [
-                                    ["data1", "<%- val %>"],
-                                    ["data2", 90]
-                                ],
-
-                            }
-                        });
 
                     })
 
@@ -239,8 +289,7 @@
                     one.addEventListener("click", function(e) {
                         e.target.parentElement.parentElement.children[0].children[1].id = "";
                         e.target.parentElement.parentElement.children[0].children[2].id = "";
-                        e.target.parentElement.parentElement.children[0].children[3].id = "";
-                        e.target.parentElement.parentElement.children[0].children[4].id = "";
+
 
                     })
                 })
@@ -258,20 +307,6 @@
 
                     document.querySelector("#meal-schedule").style.display = "block"
                 })
-
-                // if (document.querySelector("#chart")) {
-                //     var chart = bb.generate({
-                //         bindto: "#chart",
-                //         data: {
-                //             type: "donut",
-                //             columns: [
-                //                 ["data1", "<%- val %>"],
-                //                 ["data2", 90]
-                //             ],
-
-                //         }
-                //     });
-                // }
             </script>
             <script type="text/javascript" src="/js/dump.js"></script>
 

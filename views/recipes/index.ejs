@@ -43,15 +43,25 @@
                 <a class="modal-trigger right-align" id="m<%= index %>" href="#modal<%= index %>">View Nutrition</a>
                 <div id="modal<%= index %>" class="modal">
                     <div class="modal-content">
-                        <h4>Modal Header</h4>
-                        <div class="inner"></div>
-                        <div class="inner1"><input type="hidden" value="" /></div>
-                        <div class="inner2"><input type="hidden" value="" /></div>
-                        <div class="inner3"><input type="hidden" value="" /></div>
+                        <h4>Recipe Nutrition Analysis <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
+                                class="large material-icons  right">close</i></a>
+                        </h4>
+
+                        <div class="inner1"></div>
+
+
+                        <div id=""></div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                        <p>Percentages represented are based on the user preferences you selected and each serving of the recipe result </p>
+                        <input type="hidden" value="<%= element.yield %>" />
+                        <input type="hidden" value="<%= element.calories %>" />
                         <input type="hidden" value="<%= element.nutrients[0].quantity %>" />
+                        <input type="hidden" value="<%= element.nutrients[1].quantity %>" />
+                        <input type="hidden" value="<%= element.nutrients[2].quantity %>" />
+                        <input type="hidden" value="<%= element.nutrients[3].quantity %>" />
+
+
                     </div>
                 </div>
                 <div class="card-image waves-effect waves-block waves-light">

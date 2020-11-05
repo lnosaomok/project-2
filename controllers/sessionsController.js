@@ -7,7 +7,11 @@ const { check, validationResult } = require("express-validator");
 router.get("/new", (req, res) => {
     res.render("sessions/new.ejs", {
         currentUser: req.session.currentUser,
-        val: null,
+        valFat: null,
+        valSugar: null,
+        valCarbs: null,
+        valProtein: null,
+        valCalories: null,
     });
 });
 
@@ -36,7 +40,6 @@ router.post(
             }
 
             req.session.currentUser = user;
-            console.log(user._id);
 
             res.redirect("/recipies");
         } catch (err) {

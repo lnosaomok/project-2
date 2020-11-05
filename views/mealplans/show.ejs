@@ -1,14 +1,15 @@
 <div class="container">
 
     <div class="card-panel">
-        <button class="btn btn-flat secondary-content"><i class="material-icons left">arrow_back</i></button>
 
         <h3>
             Meals For
             <%= mealPlan.dateWithYear  %>
-                <form action="/logs/<%= " log._id " %>?_method=DELETE" method="POST">
+                <form action="/mealplan/<%= mealPlan._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-flat secondary-content"><i class="material-icons">delete</i></button>
                 </form>
+                <a href="/mealplan/<%= mealPlan._id %>/edit"><i class="material-icons left">edit</i></a>
+
 
         </h3>
 
@@ -22,37 +23,106 @@
             </ul>
         </div>
         <div id="test1" class="col s12">
-            <% if (mealPlan.breakfast !== "") { %>
-                <h2>
-                    <%= mealPlan.breakfast.label%>
-                </h2>
-                <% } else { %>
-                    <p>Not meal here!</p>
-                    <a href="/mealplan/new">Add Meal</a>
+            <div class="container favourites">
+                <% if (mealPlan.breakfast && mealPlan.breakfast !== "") { %>
+                    <div class="col s12 m12 card inner-card">
+                        <div class="title-label">
+                            <h4>
+                                <%= mealPlan.breakfast.label%>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <h4>Ingredients</h4>
+                            <ol>
+                                <% mealPlan.breakfast.ingredientLines.forEach((one, index) => { %>
+                                    <li>
+                                        <%= one %>
+                                    </li>
+                                    <% }) %>
+                            </ol>
+                            <a href="#" onclick="window.location='<%= mealPlan.breakfast.source %>';">Cooking Instructions
+                            from
+                            <%= mealPlan.breakfast.source %></a>
 
-                    <% } %>
+                        </div>
+                    </div>
+
+                    <% } else { %>
+                        <p>Not meal here!</p>
+                        <a href="/mealplan/<%= mealPlan._id %>/edit">Add Meal</a>
+
+                        <% } %>
+            </div>
         </div>
         <div id="test2" class="col s12">
-            <% if (mealPlan.lunch !== "") { %>
-                <h2>
-                    <%= mealPlan.lunch.label%>
-                </h2>
-                <% } else { %>
-                    <p>Not meal here!</p>
-                    <a href="/mealplan/new">Add Meal</a>
+            <div class="container favourites">
+                <% if (mealPlan.lunch !== "") { %>
+                    <div class="col s12 m12 card inner-card">
+                        <div class="title-label">
+                            <h4>
+                                <%= mealPlan.lunch.label%>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <h4>Ingredients</h4>
+                            <ol>
+                                <% mealPlan.lunch.ingredientLines.forEach((one, index) => { %>
+                                    <li>
+                                        <%= one %>
+                                    </li>
+                                    <% }) %>
+                            </ol>
+                            <a href="#" onclick="window.location='<%= mealPlan.lunch.source %>';">Cooking Instructions
+                            from
+                            <%= mealPlan.lunch.source %></a>
 
-                    <% } %>
+                        </div>
+                    </div>
+
+                    <% } else { %>
+                        <p>Not meal here!</p>
+                        <a href="/mealplan/<%= mealPlan._id %>/edit">Add Meal</a>
+
+                        <% } %>
+            </div>
         </div>
         <div id="test3" class="col s12">
-            <% if (mealPlan.dinner !== "") { %>
-                <h2>
-                    <%= mealPlan.dinner.label%>
-                </h2>
-                <% } else { %>
-                    <p>Not meal here!</p>
-                    <a href="/mealplan/new">Add Meal</a>
+            <div class="container favourites">
+                <% if (mealPlan.dinner !== "") { %>
+                    <div class="col s12 m12 card inner-card">
+                        <div class="title-label">
+                            <h4>
+                                <%= mealPlan.dinner.label%>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <h4>Ingredients</h4>
+                            <ol>
+                                <% mealPlan.dinner.ingredientLines.forEach((one, index) => { %>
+                                    <li>
+                                        <%= one %>
+                                    </li>
+                                    <% }) %>
+                            </ol>
+                            <a href="#" onclick="window.location='<%= mealPlan.dinner.source %>';">Cooking Instructions
+                            from
+                            <%= mealPlan.dinner.source %></a>
 
-                    <% } %>
+                        </div>
+                    </div>
+
+                    <% } else { %>
+                        <p>Not meal here!</p>
+                        <a href="/mealplan/<%= mealPlan._id %>/edit">Add Meal</a>
+
+                        <% } %>
+            </div>
         </div>
     </div>
 

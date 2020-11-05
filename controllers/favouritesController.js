@@ -14,7 +14,21 @@ router.get("/:id/:index", async(req, res) => {
         recipes: favRecipes,
         activeIndex: activeIndex,
         currentUser: req.session.currentUser,
-        val: parseInt(req.session.currentUser.macrosFat),
+        valFat: req.session.currentUser.macrosFat !== "" ?
+            parseInt(req.session.currentUser.macrosFat) :
+            0,
+        valSugar: req.session.currentUser.macrosSugar !== "" ?
+            parseInt(req.session.currentUser.macrosSugar) :
+            0,
+        valCarbs: req.session.currentUser.macrosCarbs !== "" ?
+            parseInt(req.session.currentUser.macrosCarbs) :
+            0,
+        valProtein: req.session.currentUser.macrosProtein !== "" ?
+            parseInt(req.session.currentUser.macrosProtein) :
+            0,
+        valCalories: req.session.currentUser.calories !== null ?
+            req.session.currentUser.calories :
+            0,
     });
 });
 
@@ -27,7 +41,21 @@ router.get("/", async(req, res) => {
         recipes: favRecipes,
         activeIndex: 0,
         currentUser: req.session.currentUser,
-        val: parseInt(req.session.currentUser.macrosFat),
+        valFat: req.session.currentUser.macrosFat !== "" ?
+            parseInt(req.session.currentUser.macrosFat) :
+            0,
+        valSugar: req.session.currentUser.macrosSugar !== "" ?
+            parseInt(req.session.currentUser.macrosSugar) :
+            0,
+        valCarbs: req.session.currentUser.macrosCarbs !== "" ?
+            parseInt(req.session.currentUser.macrosCarbs) :
+            0,
+        valProtein: req.session.currentUser.macrosProtein !== "" ?
+            parseInt(req.session.currentUser.macrosProtein) :
+            0,
+        valCalories: req.session.currentUser.calories !== null ?
+            req.session.currentUser.calories :
+            0,
     });
 });
 
