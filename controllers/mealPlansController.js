@@ -318,8 +318,11 @@ router.post("/", async(req, res) => {
         };
 
         //console.log(mealPlan);
-        let meal_planDateExists = await Meal_Plan.findOne({ mealDate });
-
+        let meal_planDateExists = await Meal_Plan.findOne({
+            mealDate,
+            user: req.session.currentUser._id,
+        });
+        console.log(meal_planDateExists);
         // const dateExists = user.mealPlans.some((element) => {
         //     return element.mealDate === mealDate;
         // });
@@ -354,21 +357,25 @@ router.post("/", async(req, res) => {
         //     });
         // }
         else {
+            console.log(meal_planDateExists);
             if (mealTime === "breakfast") {
                 await Meal_Plan.updateOne({
                     mealDate: meal_planDateExists.mealDate,
+                    user: req.session.currentUser._id,
                 }, { $set: { breakfast: mealValue } });
             }
 
             if (mealTime === "lunch") {
                 await Meal_Plan.updateOne({
                     mealDate: meal_planDateExists.mealDate,
+                    user: req.session.currentUser._id,
                 }, { $set: { lunch: mealValue } });
             }
 
             if (mealTime === "dinner") {
                 await Meal_Plan.updateOne({
                     mealDate: meal_planDateExists.mealDate,
+                    user: req.session.currentUser._id,
                 }, { $set: { dinner: mealValue } });
             }
             res.redirect(
