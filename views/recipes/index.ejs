@@ -3,13 +3,11 @@
         <form id="search-form" action="/recipies/search" method="GET">
             <div class="col s11">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 searchBar">
                         <i class="material-icons prefix">local_dining</i>
-                        <input type="text" id="autocomplete-input" name="search" class="autocomplete" autocomplete="off">
+                        <input type="text" id="autocomplete-input" name="search" placeholder="type main ingredient to get recipe ideas" class="autocomplete" autocomplete="off">
 
-                        <label for="autocomplete-input">type main ingredient to get recipe ideas</label>
-
-
+                        <button type="submit" id="searchSubmit"> <i class="material-icons right">send</i></button>
 
                     </div>
 
@@ -17,81 +15,92 @@
                 </div>
             </div>
             <div class="col s1">
-                <button type="submit"> <i class="material-icons right">send</i></button>
+
 
             </div>
         </form>
     </div>
-    <div class="recipes">
-        <% recipes.forEach((element, index) => { %>
+    <% if (recipes.length > 0) { %>
+        <div class="recipes">
+            <% recipes.forEach((element, index) => { %>
 
 
 
-            <div class="card sticky-action">
+                <div class="card sticky-action">
 
-                <form id="favourites-form" name="favouritesForm">
-                    <p>
-                        <label>
+                    <form id="favourites-form" name="favouritesForm">
+                        <p>
+                            <label>
                         <input type="checkbox" name="favourite" id="favourite"
                             value="<%=  JSON.stringify(element) %>" />
                         <input type="hidden" name="user" id="user" value="<%= currentUser._id %>">
                         <span class="sr-only">Red</span>
                     </label>
-                    </p>
-                    <button id="hidden-submit" type="submit"></button>
-                </form>
-                <a class="modal-trigger right-align" id="m<%= index %>" href="#modal<%= index %>">View Nutrition</a>
-                <div id="modal<%= index %>" class="modal">
-                    <div class="modal-content">
-                        <h4>Recipe Nutrition Analysis <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
+                        </p>
+                        <button id="hidden-submit" type="submit"></button>
+                    </form>
+                    <a class="modal-trigger right-align" id="m<%= index %>" href="#modal<%= index %>">View Nutrition</a>
+                    <div id="modal<%= index %>" class="modal">
+                        <div class="modal-content">
+                            <h4>Recipe Nutrition Analysis <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
                                 class="large material-icons  right">close</i></a>
-                        </h4>
+                            </h4>
 
-                        <div class="inner1"></div>
+                            <div class="inner1"></div>
+                            <div class="legend"></div>
 
 
-                        <div id=""></div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <p>Percentages represented are based on the user preferences you selected and each serving of the recipe result </p>
+                            <input type="hidden" value="<%= element.yield %>" />
+                            <input type="hidden" value="<%= element.calories %>" />
+                            <input type="hidden" value="<%= element.nutrients[0].quantity %>" />
+                            <input type="hidden" value="<%= element.nutrients[1].quantity %>" />
+                            <input type="hidden" value="<%= element.nutrients[2].quantity %>" />
+                            <input type="hidden" value="<%= element.nutrients[3].quantity %>" />
+
+
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <p>Percentages represented are based on the user preferences you selected and each serving of the recipe result </p>
-                        <input type="hidden" value="<%= element.yield %>" />
-                        <input type="hidden" value="<%= element.calories %>" />
-                        <input type="hidden" value="<%= element.nutrients[0].quantity %>" />
-                        <input type="hidden" value="<%= element.nutrients[1].quantity %>" />
-                        <input type="hidden" value="<%= element.nutrients[2].quantity %>" />
-                        <input type="hidden" value="<%= element.nutrients[3].quantity %>" />
-
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" id="activator" src="<%= element.image %>">
+                    </div>
+                    <div class="card-content">
+                        <a class="btn-floating waves-effect waves-light red right" id="add-favourite"> <i class="material-icons">add</i></a>
+                        <span class="card-title activator grey-text text-darken-4"><%= element.label %></span>
 
                     </div>
-                </div>
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" id="activator" src="<%= element.image %>">
-                </div>
-                <div class="card-content">
-                    <a class="btn-floating waves-effect waves-light red right" id="add-favourite"> <i class="material-icons">add</i></a>
-                    <span class="card-title activator grey-text text-darken-4"><%= element.label %></span>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                        <h4>Ingredients</h4>
+                        <ol>
+                            <% element.ingredientLines.forEach((one, index) => { %>
 
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-                    <h4>Ingredients</h4>
-                    <ol>
-                        <% element.ingredientLines.forEach((one, index) => { %>
-
-                            <li>
-                                <%= one %>
-                            </li>
-                            <% }) %>
-                    </ol>
+                                <li>
+                                    <%= one %>
+                                </li>
+                                <% }) %>
+                        </ol>
 
 
-                    <a href="<%= element.source %>">Cooking Instructions from <%= element.source %></a>
+                        <a href="<%= element.source %>">Cooking Instructions from <%= element.source %></a>
+
+                    </div>
 
                 </div>
 
+                <% }) %>
+        </div>
+        <% } else { %>
+            <div class="container container-inner">
+                <div class="card">
+                    <h6>No recipes to show here. Search for recipes using the recipe name or main ingredients</h6>
+                </div>
             </div>
+            <% } %>
 
-            <% }) %>
-    </div>
+
 
 </div>

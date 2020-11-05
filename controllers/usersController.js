@@ -4,6 +4,28 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/users.js");
+router.get("/edit", async(req, res) => {
+    let user = await User.findById(req.session.currentUser._id);
+    res.render("users/edit.ejs", {
+        currentUser: req.session.currentUser,
+        valFat: req.session.currentUser.macrosFat !== "" ?
+            parseInt(req.session.currentUser.macrosFat) :
+            0,
+        valSugar: req.session.currentUser.macrosSugar !== "" ?
+            parseInt(req.session.currentUser.macrosSugar) :
+            0,
+        valCarbs: req.session.currentUser.macrosCarbs !== "" ?
+            parseInt(req.session.currentUser.macrosCarbs) :
+            0,
+        valProtein: req.session.currentUser.macrosProtein !== "" ?
+            parseInt(req.session.currentUser.macrosProtein) :
+            0,
+        valCalories: req.session.currentUser.calories !== null ?
+            req.session.currentUser.calories :
+            0,
+    });
+});
+
 router.get("/new", (req, res) => {
     res.render("users/new.ejs", {
         currentUser: req.session.currentUser,

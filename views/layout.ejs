@@ -89,13 +89,6 @@
                             M.toast({
                                 html: 'Saved!'
                             })
-                        } else {
-                            e.target.parentElement.parentElement.parentElement.children[0][0].click()
-                            e.target.parentElement.parentElement.parentElement.children[0][2].click()
-                            e.target.innerHTML = "add";
-                            M.toast({
-                                html: 'Removed!'
-                            })
                         }
                     });
                 })
@@ -159,138 +152,165 @@
                     var instances = M.Datepicker.init(elems, options);
                 });
 
-                document.querySelectorAll(".modal-trigger").forEach((one) => {
-                    one.addEventListener("click", function(e) {
-                        let recipeYield = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[1].value)
-                        let recipeCalories = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[2].value)
-                        let recipeMacroFat = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[3].value)
-                        let recipeMacroCarbs = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[4].value)
-                        let recipeMacroSugar = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
-                        let recipeMacroProtein = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+                let noUserPreferences = "<%= valCalories == 0 %>" || "<%= valFat == 0 %>" || "<%=  valProtein === 0 %>" || "<%=  valSugar === 0 %>" || "<%=  valCarbs === 0 %>"
+
+                var isnoUserPreferences = (noUserPreferences === "true");
+                if (isnoUserPreferences) {
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+                            document.querySelectorAll(".inner1")[index].innerHTML = `<p>No dietary preferences have been set. Update detrary prefences to see nutrition analysis</p>`
+                        })
+                    })
+                } else {
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+                            let recipeYield = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[1].value)
+                            let recipeCalories = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[2].value)
+                            let recipeMacroFat = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[3].value)
+                            let recipeMacroCarbs = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[4].value)
+                            let recipeMacroSugar = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+                            let recipeMacroProtein = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
 
 
+                            document.querySelectorAll(".inner1")[index].id = "chart1"
+                            document.querySelectorAll(".legend")[index].id = "legend"
+                            console.log(e.target.nextElementSibling.children[0])
+                            let arr = []
+                            let colorsArr = [];
+                            let valuesArr = []
+                            console.log("<%-  valFat %>", "<%=  valSugar %>", "<%= valCarbs %>", "<%=  valProtein %>",
+                                "<%= valCalories %>")
 
-                        e.target.nextElementSibling.children[0].children[1].id = "chart1"
-                        e.target.nextElementSibling.children[0].children[2].id = "legend"
+                            console.log(recipeMacroSugar, recipeYield, recipeCalories, recipeMacroCarbs, recipeMacroProtein, recipeMacroFat)
 
-                        let arr = []
-                        let colorsArr = [];
-                        let valuesArr = []
-                        console.log("<%-  valFat %>", "<%=  valSugar %>", "<%= valCarbs %>", "<%=  valProtein %>",
-                            "<%= valCalories %>")
+                            if ("<%= valFat %>" != 0) {
+                                recipeMacroFat = recipeMacroFat / recipeYield
+                                let calc = recipeMacroFat / "<%= valFat %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr1 = ['Fat', calc]
+                                arr.push(innerArr1);
+                                colorsArr.push("orange");
+                                valuesArr.push(0)
+                                console.log(calc)
 
-                        console.log(recipeMacroSugar, recipeYield, recipeCalories, recipeMacroCarbs, recipeMacroProtein, recipeMacroFat)
+                            }
 
-                        if ("<%= valFat %>" != 0) {
-                            recipeMacroFat = recipeMacroFat / recipeYield
-                            let calc = recipeMacroFat / "<%= valFat %>"
-                            calc = Math.round(calc * 100)
-                            let innerArr1 = ['Fat', calc]
-                            arr.push(innerArr1);
-                            colorsArr.push("orange");
-                            valuesArr.push(0)
-                            console.log(calc)
-
-                        }
-
-                        if ("<%= valCarbs %>" != 0) {
-                            recipeMacroCarbs = recipeMacroCarbs / recipeYield
-                            let calc = recipeMacroCarbs / "<%= valCarbs %>"
-                            calc = Math.round(calc * 100)
-                            let innerArr2 = ['Carbs', calc]
-                            arr.push(innerArr2)
-                            colorsArr.push("indigo");
-                            valuesArr.push(0)
-                            console.log(calc)
-
-
-                        }
-
-                        if ("<%= valProtein %>" != 0) {
-                            recipeMacroProtein = recipeMacroProtein / recipeYield
-                            let calc = recipeMacroProtein / "<%= valProtein %>"
-                            calc = Math.round(calc * 100)
-                            let innerArr3 = ['Protein', calc]
-                            arr.push(innerArr3);
-                            colorsArr.push("violet");
-                            valuesArr.push(0)
-                            console.log(calc)
+                            if ("<%= valCarbs %>" != 0) {
+                                recipeMacroCarbs = recipeMacroCarbs / recipeYield
+                                let calc = recipeMacroCarbs / "<%= valCarbs %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr2 = ['Carbs', calc]
+                                arr.push(innerArr2)
+                                colorsArr.push("indigo");
+                                valuesArr.push(0)
+                                console.log(calc)
 
 
-                        }
+                            }
 
-                        if ("<%= valSugar %>" != 0) {
-                            recipeMacroSugar = recipeMacroSugar / recipeYield
-                            let calc = recipeMacroSugar / "<%= valSugar %>"
-                            calc = Math.round(calc)
-                            let innerArr4 = ['Sugar', calc]
-                            arr.push(innerArr4);
-                            colorsArr.push("yellow");
-                            valuesArr.push(0)
-                            console.log(calc)
-
-
-                        }
-
-                        if ("<%= valCalories %>") {
-                            recipeCalories = recipeCalories / recipeYield
-                            let calc = recipeCalories / "<%= valCalories %>"
-                            calc = Math.round(calc * 100)
-                            let innerArr5 = ['Calories', calc]
-                            arr.push(innerArr5);
-                            colorsArr.push("green");
-                            valuesArr.push(0)
-                            console.log(calc)
+                            if ("<%= valProtein %>" != 0) {
+                                recipeMacroProtein = recipeMacroProtein / recipeYield
+                                let calc = recipeMacroProtein / "<%= valProtein %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr3 = ['Protein', calc]
+                                arr.push(innerArr3);
+                                colorsArr.push("violet");
+                                valuesArr.push(0)
+                                console.log(calc)
 
 
-                        }
+                            }
 
-                        console.log(arr)
-                        var chart1 = bb.generate({
-                            data: {
-                                columns: arr,
-                                type: "gauge", // for ESM specify as: gauge()
-                            },
-                            legend: {
-                                contents: {
-                                    bindto: "#legend",
-                                    template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
-                                }
-                            },
-                            gauge: {
-                                type: "multi",
-                                max: 100,
-                                min: 0,
-                                expand: true,
-                                arcs: {
-                                    minWidth: 5
+                            if ("<%= valSugar %>" != 0) {
+                                recipeMacroSugar = recipeMacroSugar / recipeYield
+                                let calc = recipeMacroSugar / "<%= valSugar %>"
+                                calc = Math.round(calc)
+                                let innerArr4 = ['Sugar', calc]
+                                arr.push(innerArr4);
+                                colorsArr.push("yellow");
+                                valuesArr.push(0)
+                                console.log(calc)
+
+
+                            }
+
+                            if ("<%= valCalories %>") {
+                                recipeCalories = recipeCalories / recipeYield
+                                let calc = recipeCalories / "<%= valCalories %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr5 = ['Calories', calc]
+                                arr.push(innerArr5);
+                                colorsArr.push("green");
+                                valuesArr.push(0)
+                                console.log(calc)
+
+
+                            }
+
+                            console.log(arr)
+
+
+                            var chart1 = bb.generate({
+                                data: {
+                                    columns: arr,
+                                    type: "gauge", // for ESM specify as: gauge()
                                 },
-                                width: 110,
-                            },
+                                legend: {
+                                    contents: {
+                                        bindto: "#legend",
+                                        template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
+                                    }
+                                },
+                                gauge: {
+                                    type: "multi",
+                                    max: 100,
+                                    min: 0,
+                                    expand: true,
+                                    arcs: {
+                                        minWidth: 5
+                                    },
+                                    width: 110,
+                                },
 
-                            size: {
-                                height: 250
-                            },
-                            bindto: "#chart1"
-                        });
+                                size: {
+                                    height: 250
+                                },
+                                bindto: "#chart1"
+                            });
+
+
+
+
+
+
+                        })
+
+                    })
+                }
+
+
+
+                if (document.querySelector("#newForm-fade")) {
+                    document.querySelector("#newForm-fade").classList.add("fade-form")
+                }
+                if (document.querySelector("#form-fade")) {
+                    document.querySelector("#form-fade").classList.add("fade-form")
+                }
+
+
+
+                document.querySelectorAll(".modal-close").forEach((one, index) => {
+                    one.addEventListener("click", function(e) {
+                        document.querySelectorAll(".inner1")[index].id = ""
+                        document.querySelectorAll(".legend")[index].id = ""
+
 
 
                     })
-
-                })
-
-
-
-
-
-
-
-                document.querySelectorAll(".modal-close").forEach((one) => {
-                    one.addEventListener("click", function(e) {
-                        e.target.parentElement.parentElement.children[0].children[1].id = "";
-                        e.target.parentElement.parentElement.children[0].children[2].id = "";
-
-
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.removeEventListener("click", function(e) {
+                            document.querySelectorAll(".inner1")[index].innerHTML = ""
+                        })
                     })
                 })
 
@@ -302,13 +322,13 @@
                     var elems = document.querySelectorAll('.modal');
                     var instances = M.Modal.init(elems);
                 });
+                if (document.querySelector("#show-schedule")) {
+                    document.querySelector("#show-schedule").addEventListener("click", function(e) {
 
-                document.querySelector("#show-schedule").addEventListener("click", function(e) {
-
-                    document.querySelector("#meal-schedule").style.display = "block"
-                })
+                        document.querySelector("#meal-schedule").style.display = "block"
+                    })
+                }
             </script>
-            <script type="text/javascript" src="/js/dump.js"></script>
 
 </body>
 

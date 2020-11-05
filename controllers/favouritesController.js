@@ -81,6 +81,10 @@ router.post("/", async(req, res) => {
     }
 });
 
-router.delete("/", (req, res) => {});
+router.delete("/:id", (req, res) => {
+    Favourite.findByIdAndDelete(req.params.id, () => {
+        res.redirect("/favourites");
+    });
+});
 
 module.exports = router;

@@ -1,4 +1,4 @@
-<nav>
+<nav class="">
     <ul id="dropdown1" class="dropdown-content ">
         <li><a href="/recipies">Search for Recipes</a></li>
         <li><a href="/favourites">My Saved Recipes</a></li>
@@ -10,6 +10,7 @@
         <li><a href="/mealplan/search">View Today's Schedule</a></li>
 
     </ul>
+    <a href="#" class="brand-logo center"><i class=" large material-icons left">local_dining</i> Meal Planner</a>
 
     <ul id="dropdown3" class="dropdown-content "></ul>
     <div class="nav-wrapper">
@@ -21,7 +22,7 @@
 
         </ul>
         <ul class="right" id="nav-mobile">
-
+            <li><a href="/users/edit">Update User Preferences</a></li>
             <% if (currentUser) { %>
                 <li>Welcome
                     <%= currentUser.username %>
@@ -37,4 +38,5 @@
                     <% } %>
         </ul>
     </div>
+
 </nav>

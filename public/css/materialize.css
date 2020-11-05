@@ -8,12 +8,44 @@
     background-color: #e51c23 !important;
 }
 
+.space {
+    width: 8vw
+}
+
 #favourites-form span {
     color: white;
 }
 
+.favourites {
+    max-width: 700px;
+}
+
 #active-fav {
     background-color: lightgray;
+}
+
+.fade-form {
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.searchBar {
+    display: flex;
+}
+
+#searchSubmit {
+    border: none;
+    background-color: transparent;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #favourites-form input[type="checkbox"]+span:not(.lever):before {
@@ -63,8 +95,9 @@
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
-    margin-right: 2rem;
+    margin-right: 5rem;
     overflow-y: auto;
+    max-width: 300px;
 }
 
 .diet {
@@ -9518,6 +9551,10 @@ input[type="range"]::-ms-thumb {
 #amount_inline4 {
     width: 90%;
     display: none;
+}
+
+#width {
+    width: 90%;
 }
 
 .amount_inline1 {

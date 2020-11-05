@@ -43,7 +43,11 @@ router.get("/search", isAuthenticated, async(req, res) => {
   //     url += `&nutrients%5B${appendKeys}%5D=${appendValues}`;
   // });
 
-  url += `&health=${user.diet_label}`;
+  if (user.diet_label) {
+    url += `&health=${user.diet_label}`;
+  }
+
+  console.log(url);
 
   axios
     .get(url)

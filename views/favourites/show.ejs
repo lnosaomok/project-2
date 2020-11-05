@@ -20,6 +20,9 @@
 
         <div class="container favourites">
             <div class="col s12 m12 card inner-card">
+                <form action="/favourites/<%= element._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-flat secondary-content"><i class="material-icons">delete</i></button>
+                </form>
                 <div class="title-label">
                     <h4>
                         <%= element.favourite.label %>
@@ -75,9 +78,7 @@
                         </h4>
 
                         <div class="inner1"></div>
-
-
-                        <div id=""></div>
+                        <div class="legend"></div>
                     </div>
                     <div class="modal-footer">
                         <p>Percentages represented are based on the user preferences you selected and each serving of the recipe result </p>
@@ -114,6 +115,8 @@
 
 
         </div>
+
+        <div class="space"></div>
     </div>
 
 
