@@ -42,7 +42,7 @@
                     <a class="modal-trigger right-align" id="m<%= index %>" href="#modal<%= index %>">View Nutrition</a>
                     <div id="modal<%= index %>" class="modal">
                         <div class="modal-content">
-                            <h4>Recipe Nutrition Analysis <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
+                            <h4>Recipe Nutrition Analysis (per serving) <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i
                                 class="large material-icons  right">close</i></a>
                             </h4>
 
@@ -69,7 +69,10 @@
                     </div>
                     <div class="card-content">
                         <a class="btn-floating waves-effect waves-light red right" id="add-favourite"> <i class="material-icons">add</i></a>
-                        <span class="card-title activator grey-text text-darken-4"><%= element.label %></span>
+                        <span class="card-title activator grey-text text-darken-4"><%= element.label %></span> Calories:
+                        <em id="em"> <%= Math.round(element.calories) %></em> <br /> Servings: <em id="em">
+                    <%= element.yield %></em>
+
 
                     </div>
                     <div class="card-reveal">

@@ -41,7 +41,7 @@ router.post(
 
             req.session.currentUser = user;
 
-            res.redirect("/recipies");
+            res.redirect("/favourites");
         } catch (err) {
             console.error(err.message);
             res.status(500).send("Server Error");

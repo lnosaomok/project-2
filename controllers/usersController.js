@@ -62,7 +62,6 @@ router.post("/", async(req, res) => {
     // }
     const { username, password } = req.body;
 
-    console.log(username, password);
     try {
         // let user = await User.findOne({ username });
 
@@ -75,7 +74,6 @@ router.post("/", async(req, res) => {
             bcrypt.genSaltSync(10)
         );
 
-        console.log(req.body.password);
         let pass = req.body.password;
         const newUser = new User({
             username,
@@ -87,8 +85,6 @@ router.post("/", async(req, res) => {
 
         req.session.currentUser = userSaves;
 
-        // await console.log(req.session.currentUser);
-        //console.log(req.session.currentUser);
         res.redirect("/users/new2");
     } catch (err) {
         console.error(err);
@@ -99,7 +95,6 @@ router.post("/", async(req, res) => {
 ///Update User Prefrences
 
 router.post("/userPreferences", async(req, res) => {
-    console.log(req.session);
     let user = await User.findById(req.session.currentUser._id);
 
     if (!user) return res.status(404).json({ msg: "User not found" });
@@ -142,8 +137,7 @@ router.post("/userPreferences", async(req, res) => {
         });
         let userAfterSave = await User.findById(req.session.currentUser._id);
         req.session.currentUser = userAfterSave;
-        console.log(req.session.currentUser);
-        res.redirect("/recipies");
+        res.redirect("/favourites");
     } catch (err) {
         console.error("message", err.message);
         res.status(500).send("Server Error");

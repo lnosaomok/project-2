@@ -37,18 +37,9 @@ router.get("/search", isAuthenticated, async(req, res) => {
     url += `&nutrients%5B${`PROCNT`}%5D=${user.macrosProtein}`;
   }
 
-  console.log(user.macrosProtein);
-  // user.macros.forEach((each) => {
-  //     let appendKeys = Object.keys(each)[0];
-  //     let appendValues = Object.values(each)[0];
-  //     url += `&nutrients%5B${appendKeys}%5D=${appendValues}`;
-  // });
-
   if (user.diet_label) {
     url += `&health=${user.diet_label}`;
   }
-
-  console.log(url);
 
   axios
     .get(url)
@@ -62,8 +53,6 @@ router.get("/search", isAuthenticated, async(req, res) => {
           return each;
         }
       });
-
-      console.log(resp);
 
       let transformedResult = [];
       let transformedResult1 = [];
@@ -136,9 +125,7 @@ router.get("/search", isAuthenticated, async(req, res) => {
             : 0,
       });
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(function (error) {});
 });
 
 router.get("/", isAuthenticated, async (req, res) => {
