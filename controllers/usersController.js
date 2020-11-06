@@ -1,10 +1,17 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
+
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect("/sessions/new");
+    }
+};
 
 const User = require("../models/users.js");
-router.get("/edit", async(req, res) => {
+router.get("/edit", isAuthenticated, async(req, res) => {
     let user = await User.findById(req.session.currentUser._id);
     res.render("users/edit.ejs", {
         currentUser: req.session.currentUser,

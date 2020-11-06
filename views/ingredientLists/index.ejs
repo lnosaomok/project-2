@@ -1,0 +1,40 @@
+<div class="container">
+    <% if (lists.length > 0) { %>
+        <ul class="users collection with-header card z-depth-4">
+            <li class="collection-header">
+                <div>
+                    <h4> My Ingredient Shopping Lists
+                    </h4>
+                </div>
+
+
+            </li>
+
+            <% lists.forEach((element, index) => { %>
+
+                <li class="collection-item">
+                    <div>
+                        <h6>
+
+                            <a href="/ingredients/<%=element._id %>">
+                        List for <%=element.name.join(', ') %>
+                        <form action="/ingredients/<%= element._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-flat secondary-content"><i class="material-icons">delete</i></button>
+                        </form>
+                    </a>
+                        </h6>
+
+                    </div>
+
+                </li>
+                <% }) %>
+
+        </ul>
+        <% } else { %>
+            <div class="container container-inner">
+                <div class="card">
+                    <h5>No lists saved yet, return to meal plans page to create lists</h5>
+                </div>
+            </div>
+            <% } %>
+</div>

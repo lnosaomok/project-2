@@ -93,15 +93,18 @@
                     </div>
                 </div>
                 <div class="">
-                    <h4>Ingredients</h4>
-                    <ol>
-                        <% element.favourite.ingredientLines.forEach((one, index) => { %>
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h5>Ingredients</h5>
+                        </li>
 
-                            <li>
+                        <% element.favourite.ingredientLines.forEach((one, index) => { %>
+                            <li class="collection-item">
                                 <%= one %>
                             </li>
+
                             <% }) %>
-                    </ol>
+                    </ul>
 
 
                     <a href="#" onclick="window.open('<%=element.favourite.url%>', '_blank');">Cooking Instructions from

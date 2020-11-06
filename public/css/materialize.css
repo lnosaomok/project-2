@@ -37,6 +37,7 @@
 #searchSubmit {
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 @keyframes fadeInAnimation {
@@ -88,6 +89,10 @@
 .container-inner {
     display: flex;
     flex-direction: row;
+}
+
+.mealplan-select {
+    display: none;
 }
 
 .side-nav {
@@ -2140,6 +2145,14 @@ em {
 
 .grey {
     background-color: #9e9e9e !important;
+}
+
+.close-ingr {
+    color: black
+}
+
+.margin-little {
+    margin-top: 55px;
 }
 
 .grey-text {

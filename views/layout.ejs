@@ -145,6 +145,58 @@
                     var instances = M.FloatingActionButton.init(elems);
                 });
 
+                if (document.querySelector("#generate-list")) {
+                    document.querySelector("#generate-list").addEventListener("click", function(e) {
+                        document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                            one.classList.remove("hide")
+                        })
+                        document.querySelector(".select-submit-ingr").classList.remove("hide")
+                    })
+                }
+
+                if (document.querySelector(".add-ingredients")) {
+
+                    document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+
+
+                            if (e.target.innerHTML === "add") {
+                                e.target.innerHTML = "check"
+                            } else {
+                                e.target.innerHTML = "add"
+                            }
+
+                        })
+                    })
+                }
+
+                if (document.querySelector(".select-submit-ingr")) {
+                    document.querySelector(".select-submit-ingr").addEventListener("click", function(e) {
+                        let idsArr = {};
+                        document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                            if (one.children[0].innerHTML === "check") {
+                                idsArr[`id${index}`] = one.id
+                            }
+
+
+                        })
+
+
+                        $.ajax({
+                            type: 'post',
+                            url: '/ingredients',
+                            data: JSON.stringify(idsArr),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+
+                                    window.open(`/ingredients/${data._id}`);
+                                }
+                            }
+                        });
+                    })
+                }
                 document.addEventListener('DOMContentLoaded', function() {
                     var elems = document.querySelectorAll('.collapsible');
                     var instances = M.Collapsible.init(elems);

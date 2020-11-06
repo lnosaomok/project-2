@@ -96,15 +96,18 @@
                         </div>
                     </div>
                     <div class="">
-                        <h4>Ingredients</h4>
-                        <ol>
-                            <% element.favourite.ingredientLines.forEach((one, index) => { %>
+                        <ul class="collection with-header">
+                            <li class="collection-header">
+                                <h5>Ingredients</h5>
+                            </li>
 
-                                <li>
+                            <% element.favourite.ingredientLines.forEach((one, index) => { %>
+                                <li class="collection-item">
                                     <%= one %>
                                 </li>
+
                                 <% }) %>
-                        </ol>
+                        </ul>
 
 
                         <a href="#" onclick="window.open('<%=element.favourite.url%>', '_blank');">Cooking Instructions from
@@ -125,7 +128,7 @@
         <% } else { %>
             <div class="container container-inner">
                 <div class="card">
-                    <h4>No recipes saved yet, search for recipes on the search recipes page</h4>
+                    <h5>No recipes saved yet, search for recipes on the search recipes page</h4>
                 </div>
             </div>
             <% } %>

@@ -75,14 +75,14 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
                         <h4>Ingredients</h4>
-                        <ol>
+                        <ul class="collection with-header">
                             <% element.ingredientLines.forEach((one, index) => { %>
 
-                                <li>
+                                <li class="collection-item">
                                     <%= one %>
                                 </li>
                                 <% }) %>
-                        </ol>
+                        </ul>
 
 
                         <a href="#" onclick="window.open('<%=element.url%>', '_blank');">Cooking Instructions from
