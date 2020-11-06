@@ -19,381 +19,392 @@
 <body>
 
     <%- include("./partials/nav.ejs") %>
-    <%- body %>
-    <script type="text/javascript" src="/js/materialize.js"></script>
-    <script type="text/javascript" src="/billboard/billboard.js"></script>
-    <script type="text/javascript" src="/billboard/billboard.pkgd.js"></script>
+        <%- body %>
+            <script type="text/javascript" src="/js/materialize.js"></script>
+            <script type="text/javascript" src="/billboard/billboard.js"></script>
+            <script type="text/javascript" src="/billboard/billboard.pkgd.js"></script>
 
 
-    <script type="text/javascript" src="/js/autocomplete.js"></script>
+            <script type="text/javascript" src="/js/autocomplete.js"></script>
 
-    <script>
-        let inline1El = document.querySelector("#inline1");
-        let inline2El = document.querySelector("#inline2");
-        let inline3El = document.querySelector("#inline3");
-        let inline4El = document.querySelector("#inline4");
+            <script>
+                let inline1El = document.querySelector("#inline1");
+                let inline2El = document.querySelector("#inline2");
+                let inline3El = document.querySelector("#inline3");
+                let inline4El = document.querySelector("#inline4");
 
-        if (inline1El !== null) {
-            document.querySelector("#inline1").addEventListener("click", function (e) {
-                if (e.target.checked) {
-                    document.querySelector("#amount_inline1").style.display = "block"
-                    document.querySelector(".amount_inline1").style.display = "block"
-                } else {
-                    document.querySelector("#amount_inline1").style.display = "none"
-                    document.querySelector(".amount_inline1").style.display = "none"
+                ///// Show/Hide Input boxes when user checks macros checkboxes
+
+                if (inline1El !== null) {
+                    document.querySelector("#inline1").addEventListener("click", function(e) {
+                        if (e.target.checked) {
+                            document.querySelector("#amount_inline1").style.display = "block"
+                            document.querySelector(".amount_inline1").style.display = "block"
+                        } else {
+                            document.querySelector("#amount_inline1").style.display = "none"
+                            document.querySelector(".amount_inline1").style.display = "none"
+                        }
+                    });
                 }
-            });
-        }
-        if (inline2El !== null) {
-            document.querySelector("#inline2").addEventListener("click", function (e) {
-                if (e.target.checked) {
-                    document.querySelector("#amount_inline2").style.display = "block"
-                    document.querySelector(".amount_inline2").style.display = "block"
-                } else {
-                    document.querySelector("#amount_inline2").style.display = "none"
-                    document.querySelector(".amount_inline2").style.display = "none"
+                if (inline2El !== null) {
+                    document.querySelector("#inline2").addEventListener("click", function(e) {
+                        if (e.target.checked) {
+                            document.querySelector("#amount_inline2").style.display = "block"
+                            document.querySelector(".amount_inline2").style.display = "block"
+                        } else {
+                            document.querySelector("#amount_inline2").style.display = "none"
+                            document.querySelector(".amount_inline2").style.display = "none"
+                        }
+                    });
                 }
-            });
-        }
-        if (inline3El !== null) {
-            document.querySelector("#inline3").addEventListener("click", function (e) {
-                if (e.target.checked) {
-                    document.querySelector("#amount_inline3").style.display = "block"
-                    document.querySelector(".amount_inline3").style.display = "block"
-                } else {
-                    document.querySelector("#amount_inline3").style.display = "none"
-                    document.querySelector(".amount_inline3").style.display = "none"
+                if (inline3El !== null) {
+                    document.querySelector("#inline3").addEventListener("click", function(e) {
+                        if (e.target.checked) {
+                            document.querySelector("#amount_inline3").style.display = "block"
+                            document.querySelector(".amount_inline3").style.display = "block"
+                        } else {
+                            document.querySelector("#amount_inline3").style.display = "none"
+                            document.querySelector(".amount_inline3").style.display = "none"
+                        }
+                    });
                 }
-            });
-        }
-        if (inline4El !== null) {
-            document.querySelector("#inline4").addEventListener("click", function (e) {
-                if (e.target.checked) {
-                    document.querySelector("#amount_inline4").style.display = "block"
-                    document.querySelector(".amount_inline4").style.display = "block"
-                } else {
-                    document.querySelector("#amount_inline4").style.display = "none"
-                    document.querySelector(".amount_inline4").style.display = "none"
+                if (inline4El !== null) {
+                    document.querySelector("#inline4").addEventListener("click", function(e) {
+                        if (e.target.checked) {
+                            document.querySelector("#amount_inline4").style.display = "block"
+                            document.querySelector(".amount_inline4").style.display = "block"
+                        } else {
+                            document.querySelector("#amount_inline4").style.display = "none"
+                            document.querySelector(".amount_inline4").style.display = "none"
+                        }
+                    });
                 }
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.parallax');
-            var instances = M.Parallax.init(elems);
-        });
+                /////////// Load Parallax Component
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.parallax');
+                    var instances = M.Parallax.init(elems);
+                });
+
+                /////////// Display toast when user saves a recipe
+                document.querySelectorAll("#add-favourite").forEach((element) => {
+                        element.addEventListener("click", function(e) {
+                            if (e.target.parentElement.parentElement.parentElement.children[0][0].checked === false) {
+                                e.target.parentElement.parentElement.parentElement.children[0][0].click()
+                                e.target.parentElement.parentElement.parentElement.children[0][2].click()
+                                e.target.innerHTML = "check"
+                                M.toast({
+                                    html: 'Saved!'
+                                })
+                            }
+                        });
+                    })
+                    //////////////// Load dropdown trigger
+                $(document).ready(function() {
+                    $(".dropdown-trigger").dropdown();
+                });
 
 
-        document.querySelectorAll("#add-favourite").forEach((element) => {
-            element.addEventListener("click", function (e) {
-                if (e.target.parentElement.parentElement.parentElement.children[0][0].checked === false) {
-                    e.target.parentElement.parentElement.parentElement.children[0][0].click()
-                    e.target.parentElement.parentElement.parentElement.children[0][2].click()
-                    e.target.innerHTML = "check"
-                    M.toast({
-                        html: 'Saved!'
+                //////////// Submit form when user clicks on add button fro recipes. Ajax approach is used here to provide a way to prevent form from reloading page after submitting. Page reload is not wanted so that checked recipes remain checked for user to see
+                if (document.querySelector("#favourites-form") !== null) {
+                    document.querySelectorAll("#favourites-form").forEach((element, index) => {
+                        element.addEventListener("submit", function(e) {
+                            var formData = {
+                                user: document.querySelectorAll('input[name="user"]')[index].value,
+                                favourite: JSON.parse(document.querySelectorAll('input[name="favourite"]')[index].value),
+
+                            };
+                            e.preventDefault();
+                            $.ajax({
+                                type: 'post',
+                                url: '/favourites',
+                                data: JSON.stringify(formData),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function() {
+                                    alert("Saved");
+                                }
+                            });
+
+                        })
                     })
                 }
-            });
-        })
-
-        $(document).ready(function () {
-            $(".dropdown-trigger").dropdown();
-        });
-
-
-
-        if (document.querySelector("#favourites-form") !== null) {
-            document.querySelectorAll("#favourites-form").forEach((element, index) => {
-                element.addEventListener("submit", function (e) {
-                    var formData = {
-                        user: document.querySelectorAll('input[name="user"]')[index].value,
-                        favourite: JSON.parse(document.querySelectorAll('input[name="favourite"]')[index].value),
-
-                    };
-                    e.preventDefault();
-                    $.ajax({
-                        type: 'post',
-                        url: '/favourites',
-                        data: JSON.stringify(formData),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function () {
-                            alert("Email has been sent!");
-                        }
+                ////////// Show saved toast when saves a recipe to a meal plan
+                $(function() {
+                    $('#meal-plan-form1').on('submit', function(e) {
+                        M.toast({
+                            html: 'Saved!'
+                        })
                     });
-
-                })
-            })
-        }
-
-        $(function () {
-            $('#meal-plan-form1').on('submit', function (e) {
-                M.toast({
-                    html: 'Saved!'
-                })
-            });
-        });
-
-        $(function () {
-            $('#meal-plan-form2').on('submit', function (e) {
-                M.toast({
-                    html: 'Saved!'
-                })
-            });
-        });
-
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems);
-        });
-
-        if (document.querySelector("#generate-list")) {
-            document.querySelector("#generate-list").addEventListener("click", function (e) {
-                document.querySelectorAll(".add-ingredients").forEach((one, index) => {
-                    one.classList.remove("hide")
-                })
-                document.querySelector(".select-submit-ingr").classList.remove("hide")
-            })
-        }
-
-        if (document.querySelector(".add-ingredients")) {
-
-            document.querySelectorAll(".add-ingredients").forEach((one, index) => {
-                one.addEventListener("click", function (e) {
-
-
-                    if (e.target.innerHTML === "add") {
-                        e.target.innerHTML = "check"
-                    } else {
-                        e.target.innerHTML = "add"
-                    }
-
-                })
-            })
-        }
-
-        if (document.querySelector(".select-submit-ingr")) {
-            document.querySelector(".select-submit-ingr").addEventListener("click", function (e) {
-                let idsArr = {};
-                document.querySelectorAll(".add-ingredients").forEach((one, index) => {
-                    if (one.children[0].innerHTML === "check") {
-                        idsArr[`id${index}`] = one.id
-                    }
-
-
-                })
-
-
-                $.ajax({
-                    type: 'post',
-                    url: '/ingredients',
-                    data: JSON.stringify(idsArr),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data) {
-
-                            window.open(`/ingredients/${data._id}`);
-                        }
-                    }
                 });
-            })
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.collapsible');
-            var instances = M.Collapsible.init(elems);
-        });
-        var tab_el = document.querySelectorAll('.tabs');
-        var instance = M.Tabs.init(tab_el);
 
-
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const options = {
-                format: 'm/dd',
-                yearRange: [new Date().getFullYear()]
-            }
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, options);
-        });
-
-        let noUserPreferences = "<%= valCalories == 0 %>" || "<%= valFat == 0 %>" || "<%=  valProtein === 0 %>" || "<%=  valSugar === 0 %>" || "<%=  valCarbs === 0 %>"
-
-        var isnoUserPreferences = (noUserPreferences === "true");
-        if (isnoUserPreferences) {
-            document.querySelectorAll(".modal-trigger").forEach((one, index) => {
-                one.addEventListener("click", function (e) {
-                    document.querySelectorAll(".inner1")[index].innerHTML = `<p>No dietary preferences have been set. Update detrary prefences to see nutrition analysis</p>`
-                })
-            })
-        } else {
-            document.querySelectorAll(".modal-trigger").forEach((one, index) => {
-                one.addEventListener("click", function (e) {
-                    let recipeYield = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[1].value)
-                    let recipeCalories = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[2].value)
-                    let recipeMacroFat = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[3].value)
-                    let recipeMacroCarbs = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[4].value)
-                    let recipeMacroSugar = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
-                    let recipeMacroProtein = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
-
-
-                    document.querySelectorAll(".inner1")[index].id = "chart1"
-                    document.querySelectorAll(".legend")[index].id = "legend"
-                    let arr = []
-                    let colorsArr = [];
-                    let valuesArr = []
-
-
-
-                    if ("<%= valFat %>" != 0) {
-                        recipeMacroFat = recipeMacroFat / recipeYield
-                        let calc = recipeMacroFat / "<%= valFat %>"
-                        calc = Math.round(calc * 100)
-                        let innerArr1 = ['Fat', calc]
-                        arr.push(innerArr1);
-                        colorsArr.push("orange");
-                        valuesArr.push(0)
-
-                    }
-
-                    if ("<%= valCarbs %>" != 0) {
-                        recipeMacroCarbs = recipeMacroCarbs / recipeYield
-                        let calc = recipeMacroCarbs / "<%= valCarbs %>"
-                        calc = Math.round(calc * 100)
-                        let innerArr2 = ['Carbs', calc]
-                        arr.push(innerArr2)
-                        colorsArr.push("indigo");
-                        valuesArr.push(0)
-
-
-                    }
-
-                    if ("<%= valProtein %>" != 0) {
-                        recipeMacroProtein = recipeMacroProtein / recipeYield
-                        let calc = recipeMacroProtein / "<%= valProtein %>"
-                        calc = Math.round(calc * 100)
-                        let innerArr3 = ['Protein', calc]
-                        arr.push(innerArr3);
-                        colorsArr.push("violet");
-                        valuesArr.push(0)
-
-
-                    }
-
-                    if ("<%= valSugar %>" != 0) {
-                        recipeMacroSugar = recipeMacroSugar / recipeYield
-                        let calc = recipeMacroSugar / "<%= valSugar %>"
-                        calc = Math.round(calc)
-                        let innerArr4 = ['Sugar', calc]
-                        arr.push(innerArr4);
-                        colorsArr.push("yellow");
-                        valuesArr.push(0)
-
-
-                    }
-
-                    if ("<%= valCalories %>") {
-                        recipeCalories = recipeCalories / recipeYield
-                        let calc = recipeCalories / "<%= valCalories %>"
-                        calc = Math.round(calc * 100)
-                        let innerArr5 = ['Calories', calc]
-                        arr.push(innerArr5);
-                        colorsArr.push("green");
-                        valuesArr.push(0)
-
-
-                    }
-
-
-
-                    var chart1 = bb.generate({
-                        data: {
-                            columns: arr,
-                            type: "gauge", // for ESM specify as: gauge()
-                        },
-                        legend: {
-                            contents: {
-                                bindto: "#legend",
-                                template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
-                            }
-                        },
-                        gauge: {
-                            type: "multi",
-                            max: 100,
-                            min: 0,
-                            expand: true,
-                            arcs: {
-                                minWidth: 5
-                            },
-                            width: 110,
-                        },
-
-                        size: {
-                            height: 250
-                        },
-                        bindto: "#chart1"
+                $(function() {
+                    $('#meal-plan-form2').on('submit', function(e) {
+                        M.toast({
+                            html: 'Saved!'
+                        })
                     });
+                });
+
+                //////////// Initializa floating action buttons
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.fixed-action-btn');
+                    var instances = M.FloatingActionButton.init(elems);
+                });
+
+                ////////////// Show/hide buttons
+
+                if (document.querySelector("#generate-list")) {
+                    document.querySelector("#generate-list").addEventListener("click", function(e) {
+                        document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                            one.classList.remove("hide")
+                        })
+                        document.querySelector(".select-submit-ingr").classList.remove("hide")
+                    })
+                }
+
+                ///////////// change icons display to checked when user clicks on add icon
+
+                if (document.querySelector(".add-ingredients")) {
+
+                    document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+
+                            if (e.target.innerHTML === "add") {
+                                e.target.innerHTML = "check"
+                            } else {
+                                e.target.innerHTML = "add"
+                            }
+
+                        })
+                    })
+                }
+
+                //////// Submit ingredients form without reloading the page. Ajax success function is used here for redirecting because nodejs did not allow redirects from express
+                if (document.querySelector(".select-submit-ingr")) {
+                    document.querySelector(".select-submit-ingr").addEventListener("click", function(e) {
+                        let idsArr = {};
+                        document.querySelectorAll(".add-ingredients").forEach((one, index) => {
+                            if (one.children[0].innerHTML === "check") {
+                                idsArr[`id${index}`] = one.id
+                            }
+
+
+                        })
+
+                        $.ajax({
+                            type: 'post',
+                            url: '/ingredients',
+                            data: JSON.stringify(idsArr),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+
+                                    window.open(`/ingredients/${data._id}`);
+                                }
+                            }
+                        });
+                    })
+                }
+
+                ////////Initialize collapsable component
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.collapsible');
+                    var instances = M.Collapsible.init(elems);
+                });
+                var tab_el = document.querySelectorAll('.tabs');
+                var instance = M.Tabs.init(tab_el);
+
+
+                //////////// Initialize date picker component
+                document.addEventListener('DOMContentLoaded', function() {
+                    const options = {
+                        format: 'm/dd',
+                        yearRange: [new Date().getFullYear()]
+                    }
+                    var elems = document.querySelectorAll('.datepicker');
+                    var instances = M.Datepicker.init(elems, options);
+                });
+
+                /////// check if user did not set any diet preferences at all
+                let noUserPreferences = "<%= valCalories == 0 %>" || "<%= valFat == 0 %>" || "<%=  valProtein === 0 %>" || "<%=  valSugar === 0 %>" || "<%=  valCarbs === 0 %>"
+
+                var isnoUserPreferences = (noUserPreferences === "true");
+                if (isnoUserPreferences) {
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+                            document.querySelectorAll(".inner1")[index].innerHTML = `<p>No dietary preferences have been set. Update detrary prefences to see nutrition analysis</p>`
+                        })
+                    })
+                } else {
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.addEventListener("click", function(e) {
+                            let recipeYield = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[1].value)
+                            let recipeCalories = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[2].value)
+                            let recipeMacroFat = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[3].value)
+                            let recipeMacroCarbs = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[4].value)
+                            let recipeMacroSugar = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+                            let recipeMacroProtein = parseInt(e.target.nextElementSibling.children[0].nextElementSibling.children[6].value)
+
+
+                            document.querySelectorAll(".inner1")[index].id = "chart1"
+                            document.querySelectorAll(".legend")[index].id = "legend"
+                            let arr = []
+                            let colorsArr = [];
+                            let valuesArr = []
+
+
+                            //////////Build colums for nutrition analysis
+                            if ("<%= valFat %>" != 0) {
+                                recipeMacroFat = recipeMacroFat / recipeYield
+                                let calc = recipeMacroFat / "<%= valFat %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr1 = ['Fat', calc]
+                                arr.push(innerArr1);
+                                colorsArr.push("orange");
+                                valuesArr.push(0)
+
+                            }
+
+                            if ("<%= valCarbs %>" != 0) {
+                                recipeMacroCarbs = recipeMacroCarbs / recipeYield
+                                let calc = recipeMacroCarbs / "<%= valCarbs %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr2 = ['Carbs', calc]
+                                arr.push(innerArr2)
+                                colorsArr.push("indigo");
+                                valuesArr.push(0)
+
+
+                            }
+
+                            if ("<%= valProtein %>" != 0) {
+                                recipeMacroProtein = recipeMacroProtein / recipeYield
+                                let calc = recipeMacroProtein / "<%= valProtein %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr3 = ['Protein', calc]
+                                arr.push(innerArr3);
+                                colorsArr.push("violet");
+                                valuesArr.push(0)
+
+
+                            }
+
+                            if ("<%= valSugar %>" != 0) {
+                                recipeMacroSugar = recipeMacroSugar / recipeYield
+                                let calc = recipeMacroSugar / "<%= valSugar %>"
+                                calc = Math.round(calc)
+                                let innerArr4 = ['Sugar', calc]
+                                arr.push(innerArr4);
+                                colorsArr.push("yellow");
+                                valuesArr.push(0)
+
+
+                            }
+
+                            if ("<%= valCalories %>") {
+                                recipeCalories = recipeCalories / recipeYield
+                                let calc = recipeCalories / "<%= valCalories %>"
+                                calc = Math.round(calc * 100)
+                                let innerArr5 = ['Calories', calc]
+                                arr.push(innerArr5);
+                                colorsArr.push("green");
+                                valuesArr.push(0)
+
+
+                            }
+
+
+                            ////////////Initialize billboard multiguage component
+                            var chart1 = bb.generate({
+                                data: {
+                                    columns: arr,
+                                    type: "gauge", // for ESM specify as: gauge()
+                                },
+                                legend: {
+                                    contents: {
+                                        bindto: "#legend",
+                                        template: "<span style='color:#fff;padding:10px;background-color:{=COLOR}'>{=TITLE}</span>"
+                                    }
+                                },
+                                gauge: {
+                                    type: "multi",
+                                    max: 100,
+                                    min: 0,
+                                    expand: true,
+                                    arcs: {
+                                        minWidth: 5
+                                    },
+                                    width: 110,
+                                },
+
+                                size: {
+                                    height: 250
+                                },
+                                bindto: "#chart1"
+                            });
+
+                        })
+
+                    })
+                }
 
 
 
+                if (document.querySelector("#newForm-fade")) {
+                    document.querySelector("#newForm-fade").classList.add("fade-form")
+                }
+                if (document.querySelector("#form-fade")) {
+                    document.querySelector("#form-fade").classList.add("fade-form")
+                }
 
 
+                /////////////// reset ids when modal is closed to tear down recipe result analysis chart component
+                document.querySelectorAll(".modal-close").forEach((one, index) => {
+                    one.addEventListener("click", function(e) {
+                        document.querySelectorAll(".inner1")[index].id = ""
+                        document.querySelectorAll(".legend")[index].id = ""
 
+                    })
+
+                    document.querySelectorAll(".modal-trigger").forEach((one, index) => {
+                        one.removeEventListener("click", function(e) {
+                            document.querySelectorAll(".inner1")[index].innerHTML = ""
+                        })
+                    })
                 })
 
-            })
-        }
+                ///////////// Initialize select component
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('select');
+                    var instances = M.FormSelect.init(elems);
+                });
+
+                ///////////// Initialize modal component
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.modal');
+                    var instances = M.Modal.init(elems);
+                });
+
+                ///////////// Initialize carousel component
 
 
-
-        if (document.querySelector("#newForm-fade")) {
-            document.querySelector("#newForm-fade").classList.add("fade-form")
-        }
-        if (document.querySelector("#form-fade")) {
-            document.querySelector("#form-fade").classList.add("fade-form")
-        }
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.carousel');
+                    var instances = M.Carousel.init(elems);
+                });
 
 
+                if (document.querySelector("#show-schedule")) {
+                    document.querySelector("#show-schedule").addEventListener("click", function(e) {
 
-        document.querySelectorAll(".modal-close").forEach((one, index) => {
-            one.addEventListener("click", function (e) {
-                document.querySelectorAll(".inner1")[index].id = ""
-                document.querySelectorAll(".legend")[index].id = ""
-
-
-
-            })
-            document.querySelectorAll(".modal-trigger").forEach((one, index) => {
-                one.removeEventListener("click", function (e) {
-                    document.querySelectorAll(".inner1")[index].innerHTML = ""
-                })
-            })
-        })
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems);
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.carousel');
-            var instances = M.Carousel.init(elems);
-        });
-
-
-        if (document.querySelector("#show-schedule")) {
-            document.querySelector("#show-schedule").addEventListener("click", function (e) {
-
-                document.querySelector("#meal-schedule").style.display = "block"
-            })
-        }
-    </script>
+                        document.querySelector("#meal-schedule").style.display = "block"
+                    })
+                }
+            </script>
 
 </body>
 
