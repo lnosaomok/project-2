@@ -78,6 +78,11 @@
                     });
                 }
 
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.parallax');
+                    var instances = M.Parallax.init(elems);
+                });
+
 
                 document.querySelectorAll("#add-favourite").forEach((element) => {
                     element.addEventListener("click", function(e) {
@@ -385,6 +390,13 @@
                     var elems = document.querySelectorAll('.modal');
                     var instances = M.Modal.init(elems);
                 });
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.carousel');
+                    var instances = M.Carousel.init(elems);
+                });
+
+
                 if (document.querySelector("#show-schedule")) {
                     document.querySelector("#show-schedule").addEventListener("click", function(e) {
 

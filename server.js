@@ -8,6 +8,7 @@ const app = express();
 const db = mongoose.connection;
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
+const path = require("path");
 
 //___________________
 //Port
@@ -72,6 +73,11 @@ app.use("/recipies", recipiesController);
 app.use("/mealplan", mealPlansController);
 app.use("/sessions", sessionsController);
 
+app.get("/", (req, res) => {
+    res.sendFile("home/index.html", {
+        root: path.join(__dirname, "./"),
+    });
+});
 //___________________
 //Listener
 //___________________

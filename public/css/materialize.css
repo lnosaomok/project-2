@@ -30,6 +30,10 @@
     animation-fill-mode: forwards;
 }
 
+.landing {
+    background-color: whitesmoke;
+}
+
 .searchBar {
     display: flex;
 }
@@ -3084,8 +3088,6 @@ video.responsive-video {
     position: absolute;
     left: 50%;
     bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-transform: translateX(-50%);
@@ -5476,6 +5478,7 @@ small {
 
 #em {
     color: black;
+    font-family: fantasy;
 }
 
 .mealPlan-item {
@@ -8831,14 +8834,14 @@ input[type="range"]::-ms-thumb {
     height: 16px;
     width: 16px;
     margin: 0 12px;
-    background-color: #e0e0e0;
+    background-color: black;
     -webkit-transition: background-color 0.3s;
     transition: background-color 0.3s;
     border-radius: 50%;
 }
 
 .slider .indicators .indicator-item.active {
-    background-color: #4caf50;
+    background-color: black;
 }
 
 .carousel {
@@ -8919,14 +8922,14 @@ input[type="range"]::-ms-thumb {
     height: 8px;
     width: 8px;
     margin: 24px 4px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: black;
     -webkit-transition: background-color 0.3s;
     transition: background-color 0.3s;
     border-radius: 50%;
 }
 
 .carousel .indicators .indicator-item.active {
-    background-color: #fff;
+    background-color: black;
 }
 
 .carousel.scrolling .carousel-item .materialboxed,

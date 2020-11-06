@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/billboard/billboard.css">
+    <link rel="stylesheet" href="/css/materialize.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>
+        Meal Planner
+    </title>
+</head>
+
+<body style="background-color: antiquewhite;">
+
+    <nav class="">
+
+        <a href="#" class="brand-logo center"><i class=" large material-icons left">local_dining</i> Meal Planner</a>
+
+        <a href="/users/new" class="right">Sign Up</a></li>
+
+
+    </nav>
+
+    <div class="section white">
+
+    </div>
+
+    <div class="section white">
+        <div class="row container">
+            <h6 class="header"><em id="em"> Powered by the Edamam recipe
+                    search API, Meal Planner provides you a one stop shop to search for recipies within your dietary
+                    needs and save the ones you like to your account, and also schedule your
+                    meals in meal plans and generate ingredients. <br /> <br />The robust API will provide a better
+                    recipe
+                    search
+                    experince to any food lover.</em>
+
+
+            </h6>
+            <br />
+            <br />
+
+
+
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/pref.png"></div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h6 class="grey-text text-darken-3 lighten-3">Set your dietary preferences</h6>
+            </h6>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/landing2.png"></div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h6 class="grey-text text-darken-3 lighten-3">Search for recipes. Results shown will adhere to users' dietary preferences</h6>
+            </h6>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/analysis.png"></div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h6 class="grey-text text-darken-3 lighten-3">Analyze recipe results and save recipes that meet your needs
+
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/schedule.png"></div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h6 class="grey-text text-darken-3 lighten-3">Create meal plan from recipes saved from recipe search</h6>
+
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/list.png"></div>
+
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h6 class="grey-text text-darken-3 lighten-3">Create Shopping lists for your saved recipes</h6>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="/js/materialize.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.carousel');
+            var options = {
+                fullWidth: true,
+                indicators: true
+            }
+            var instance = M.Carousel.init(elems, options);
+
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems);
+        });
+    </script>
+
+</body>
+
+</html>
