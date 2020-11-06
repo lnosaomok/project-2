@@ -1,5 +1,8 @@
 const data = {
     "Grilled Salmon": null,
+    "Vegetable Fried Rice": null,
+    "Lentil Curry": null,
+    "Tofu Scramble": null,
     "Fried Chicken": null,
     "Blueberry Pancakes": null,
     "Almond Flour Pancakes": null,

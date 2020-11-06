@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
+const { check, validationResult } = require("express-validator");
 
 const isAuthenticated = (req, res, next) => {
     if (req.session.currentUser) {
@@ -55,42 +56,55 @@ router.get("/new2", (req, res) => {
 });
 
 /// Create User
-router.post("/", async(req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
-    const { username, password } = req.body;
+router.post(
+    "/", [
+        check("username", "name is required").not().isEmpty(),
+        check(
+            "username",
+            "Please enter a username with 6 or more characters"
+        ).isLength({ min: 6 }),
+        check(
+            "password",
+            "Please enter a password with 6 or more characters"
+        ).isLength({ min: 6 }),
+    ],
+    async(req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        const { username, password } = req.body;
 
-    try {
-        // let user = await User.findOne({ username });
+        try {
+            let user = await User.findOne({ username });
 
-        // if (user) {
-        //     return res.status(400).json({ msg: "User already exists" });
-        // }
+            if (user) {
+                return res.status(400).json({ msg: "User already exists" });
+            }
 
-        req.body.password = bcrypt.hashSync(
-            req.body.password,
-            bcrypt.genSaltSync(10)
-        );
+            req.body.password = bcrypt.hashSync(
+                req.body.password,
+                bcrypt.genSaltSync(10)
+            );
 
-        let pass = req.body.password;
-        const newUser = new User({
-            username,
-            password: pass,
-        });
+            let pass = req.body.password;
+            const newUser = new User({
+                username,
+                password: pass,
+            });
 
-        const userSaves = await newUser.save();
-        // let createdUser = await User.create({ username, pass });
+            const userSaves = await newUser.save();
+            // let createdUser = await User.create({ username, pass });
 
-        req.session.currentUser = userSaves;
+            req.session.currentUser = userSaves;
 
-        res.redirect("/users/new2");
-    } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
+            res.redirect("/users/new2");
+        } catch (err) {
+            console.error(err);
+            res.status(500).send(err);
+        }
     }
-});
+);
 
 ///Update User Prefrences
 
