@@ -6203,6 +6203,9 @@ body.keyboard-focused .dropdown-content li:focus {
     #fav-hide {
         display: block;
     }
+}
+
+@media only screen and (max-width: 350px) {
     .modal h4 {
         font-size: 1.03rem;
     }
@@ -6213,10 +6216,6 @@ body.keyboard-focused .dropdown-content li:focus {
 .modal h3,
 .modal h4 {
     margin-top: 0;
-}
-
-.modal h4 {
-    font-size: 1.03rem;
 }
 
 .modal .modal-content {
