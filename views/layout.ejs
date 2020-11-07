@@ -227,6 +227,16 @@
                     var instances = M.Datepicker.init(elems, options);
                 });
 
+
+
+
+                if (document.querySelector("#fav-select")) {
+                    document.querySelector("#fav-select").addEventListener("change", function(e) {
+                        let showPageIndex = document.querySelector("#fav-select").value
+                        window.location = `/favourites/${showPageIndex}/0`
+                    })
+                }
+
                 /////// check if user did not set any diet preferences at all
                 let noUserPreferences = "<%= valCalories == 0 %>" || "<%= valFat == 0 %>" || "<%=  valProtein === 0 %>" || "<%=  valSugar === 0 %>" || "<%=  valCarbs === 0 %>"
 
@@ -374,6 +384,11 @@
                         })
                     })
                 })
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.sidenav');
+                    var instances = M.Sidenav.init(elems);
+                });
 
                 ///////////// Initialize select component
 

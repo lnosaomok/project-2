@@ -1,6 +1,26 @@
 <div class="">
 
     <% if (recipes.length > 0) { %>
+        <div class="inner-fav">
+            <div id="fav-hide" class="container">
+                <select id="fav-select">
+                <option id="selected" selected="selected">
+                    Select Recipe to show
+                </option>
+                <% recipes.forEach((element, index) => { %>
+
+
+                <option value="<%= element._id %>">
+                    <a href="#"><%= element.favourite.label %></a>
+                </option>
+
+                <% }) %>
+            </select>
+            </div>
+        </div>
+
+
+
         <div class="container-inner">
             <div class="side-nav">
                 <ul class="collection with-header">
@@ -17,6 +37,8 @@
                         </li>
 
                         <% }) %>
+
+
                 </ul>
             </div>
 
@@ -42,7 +64,7 @@
                                 <input type="text" class="datepicker" name="mealDate" placeholder="Choose date" required>
                                 <div class="input-field col s6">
                                     <select name="mealTime" id="meal-time" required>
-                                    <option value="" disabled selected>Choose meal time</option>
+                                    <option value="" disabled selected>Meal time</option>
                                     <option value="breakfast">Breakfast</option>
                                     <option value="lunch">Lunch</option>
                                     <option value="dinner">Dinner</option>
@@ -123,7 +145,6 @@
 
 
             </div>
-            <div class="space"></div>
         </div>
         <% } else { %>
             <div class="container container-inner">

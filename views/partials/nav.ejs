@@ -1,7 +1,17 @@
-<nav class="">
+<nav class="nav-extended">
+    <div class="nav-content">
+        <span class="nav-title hide-on-small-only"> <a href="#" class="brand-logo"><i
+                    class=" large material-icons left">local_dining</i>
+                Meal Planner</a>
+        </span>
+
+    </div>
     <ul id="dropdown1" class="dropdown-content ">
         <li><a href="/recipies">Search for Recipes</a></li>
         <li><a href="/favourites">My Saved Recipes</a></li>
+        <% if (currentUser) { %>
+            <li><a href="/users/edit">Update Preferences</a></li>
+            <% } %>
 
     </ul>
 
@@ -12,11 +22,11 @@
     </ul>
 
     <ul id="dropdown3" class="dropdown-content ">
-        <li><a href="/users/edit">Update Preferences</a></li>
+        <li><a href="/users/new">Sign Up</a></li>
+        <li><a href="/sessions/new">Log In</a></li>
 
 
     </ul>
-    <a href="#" class="brand-logo center"><i class=" large material-icons left">local_dining</i> Meal Planner</a>
 
     <ul id="dropdown3" class="dropdown-content "></ul>
     <div class="nav-wrapper">
@@ -29,24 +39,21 @@
 
         </ul>
         <ul class="right" id="nav-mobile">
-            <% if (currentUser) { %>
-                <li><a href="/users/edit">Update User Preferences</a></li>
-                <% } %>
 
-                    <% if (currentUser) { %>
-                        <li>Welcome
-                            <%= currentUser.username %>
-                        </li>
-                        <li>
-                            <form action="/sessions?_method=DELETE" method="POST">
-                                <input type="submit" value="Log Out" class="btn-small red" />
-                            </form>
-                        </li>
-                        <% } else { %>
-                            <li><a href="/users/new">Sign Up</a></li>
-                            <li><a href="/sessions/new">Log In</a></li>
-                            <% } %>
+
+            <% if (currentUser) { %>
+
+                <li>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Log Out" class="btn-flat small red" />
+                    </form>
+                </li>
+                <% } else { %>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Sign up<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+                    <% } %>
         </ul>
     </div>
+
 
 </nav>

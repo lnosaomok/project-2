@@ -7,14 +7,15 @@
                 Set your daily calorie limit/target:
                 <div class="input-field inline">
                     <input id="calories" type="text" name="calories" class="" value="<%= currentUser.calories %>">
-                    <label for="calories">Daily Calorie limit/target</label>
+                    <span class="helper-text" data-error="wrong" data-success="right">Daily Calorie limit/target</span>
+
                 </div>
             </div>
         </div>
         <p class="left-align">Set your macronutrient targets/limits</p>
         <div class="row">
 
-            <div class="diet">
+            <div class="diet radio-diet">
                 <p id="first">
                     <label>
                         <span>Carbs</span>
@@ -57,7 +58,7 @@
         <p class="left-align">Select your diet style</p>
         <div class="row">
 
-            <div class="">
+            <div class="radio-diet">
 
                 <p>
                     <label>

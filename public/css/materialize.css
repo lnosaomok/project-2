@@ -101,6 +101,7 @@
 
 .side-nav {
     width: 30vw;
+    margin-right: 1rem;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
@@ -3358,6 +3359,23 @@ th {
     text-align: center;
 }
 
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .inner-img {
+        width: 30%;
+        height: 140px;
+        text-align: center;
+    }
+    .title-label h4 {
+        font-size: 2.1rem;
+    }
+}
+
 .collection {
     margin: 0.5rem 0 1rem 0;
     border-radius: 2px;
@@ -3437,7 +3455,11 @@ th {
 .collection.with-header .collection-header {
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
-    padding: 10px 20px;
+    padding: 20px 20px;
+}
+
+.radio-diet {
+    padding: 15px;
 }
 
 .collection.with-header .collection-item {
@@ -3690,6 +3712,10 @@ nav ul a span.badge {
     margin-top: calc(0.75rem - 11px);
 }
 
+.collection-item h5 {
+    font-size: 1.3rem;
+}
+
 .collapsible span.badge {
     margin-left: auto;
 }
@@ -3717,7 +3743,7 @@ table span.badge {
 .container {
     margin: 40px auto;
     max-width: 780px;
-    width: 80%;
+    width: 95%;
 }
 
 @media only screen and (min-width: 601px) {
@@ -4691,7 +4717,7 @@ nav ul a {
     font-size: 1rem;
     color: #fff;
     display: block;
-    padding: 0 15px;
+    padding: 0 5px;
     cursor: pointer;
 }
 
@@ -4861,7 +4887,7 @@ h3 {
 h4 {
     font-size: 2.28rem;
     line-height: 110%;
-    margin: 1.52rem 0 0.912rem 0;
+    margin: 1.52rem 10 0.912rem 0;
 }
 
 h5 {
@@ -5062,7 +5088,7 @@ small {
 
 .card {
     position: relative;
-    margin: 0.5rem 20px 1rem 0;
+    margin: 0.5rem 10px 1rem 10px;
     background-color: #fff;
     -webkit-transition: -webkit-box-shadow 0.25s;
     transition: -webkit-box-shadow 0.25s;
@@ -5469,10 +5495,15 @@ small {
     border: 1px solid salmon;
 }
 
+#fav-hide {
+    display: none;
+    width: 80%
+}
+
 .header-items {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -5534,7 +5565,7 @@ small {
     border-radius: 2px;
     display: inline-block;
     height: 36px;
-    line-height: 36px;
+    line-height: 16px;
     padding: 0 16px;
     text-transform: uppercase;
     vertical-align: middle;
@@ -6162,6 +6193,15 @@ body.keyboard-focused .dropdown-content li:focus {
 @media only screen and (max-width: 992px) {
     .modal {
         width: 80%;
+    }
+}
+
+@media only screen and (max-width: 775px) {
+    .side-nav {
+        display: none;
+    }
+    #fav-hide {
+        display: block;
     }
 }
 
