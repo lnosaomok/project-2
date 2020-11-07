@@ -6192,7 +6192,7 @@ body.keyboard-focused .dropdown-content li:focus {
 
 @media only screen and (max-width: 992px) {
     .modal {
-        width: 80%;
+        width: 98%;
     }
 }
 
@@ -6203,6 +6203,9 @@ body.keyboard-focused .dropdown-content li:focus {
     #fav-hide {
         display: block;
     }
+    .modal h4 {
+        font-size: 1.03rem;
+    }
 }
 
 .modal h1,
@@ -6210,6 +6213,10 @@ body.keyboard-focused .dropdown-content li:focus {
 .modal h3,
 .modal h4 {
     margin-top: 0;
+}
+
+.modal h4 {
+    font-size: 1.03rem;
 }
 
 .modal .modal-content {
@@ -6227,9 +6234,9 @@ body.keyboard-focused .dropdown-content li:focus {
     border-radius: 0 0 2px 2px;
     background-color: #fafafa;
     padding: 4px 6px;
-    height: 56px;
+    height: 76px;
     width: 100%;
-    text-align: right;
+    text-align: center;
 }
 
 .modal .modal-footer .btn,
